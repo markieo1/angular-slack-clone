@@ -12,10 +12,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve.prod": "ng serve --prod"
+    "serve.prod": "ng serve --prod",
+    "postinstall": "node ./postcss-custom-properties.js"
   },
   "private": true,
   "dependencies": {
+    "@angular-mdc/web": "^0.6.1",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
