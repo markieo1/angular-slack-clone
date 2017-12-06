@@ -1,3 +1,7 @@
 app-drawer-permanent + .mdc-content {
   margin-left: 240px;
 }
+
+.mdc-content {
+  min-height: calc(100vh - 72px);
+}

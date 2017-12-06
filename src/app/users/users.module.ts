@@ -5,9 +5,11 @@ import { CommonModule } from '@angular/common';
 import { UsersRoutingModule } from './users-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '../auth/auth.module';
+import { UsersListComponent } from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
+    UsersListComponent
   ],
   imports: [
     CommonModule,
