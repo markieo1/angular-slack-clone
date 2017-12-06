@@ -10,9 +10,9 @@ export class LoginGuard implements CanActivate {
 
   canActivate() {
     if (this.authService.isLoggedIn()) {
+      this.location.back();
       return false;
     } else {
-      this.location.back();
       return true;
     }
   }
