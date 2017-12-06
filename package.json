@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start.prod.aot": "npm run build.prod.aot && node app.js",
+    "start.prod.aot": "node app.js",
     "build": "ng build",
     "build.prod": "ng build --prod",
     "build.prod.aot": "ng build --aot --prod",
@@ -13,7 +13,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "serve.prod": "ng serve --prod",
-    "postinstall": "node ./postcss-custom-properties.js"
+    "postinstall": "node ./postcss-custom-properties.js && npm run build.prod.aot"
   },
   "private": true,
   "dependencies": {
