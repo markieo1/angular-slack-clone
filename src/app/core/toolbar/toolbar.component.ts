@@ -1,4 +1,4 @@
-import { Component, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { DrawerService } from '../drawer/drawer.service';
 
