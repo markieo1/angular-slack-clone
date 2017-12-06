@@ -1,3 +1,5 @@
 $mdc-theme-primary: #F44336;
 $mdc-theme-secondary: #009688;
-@import "~@angular-mdc/theme/material";
+$mdc-theme-background: #fff;
+
+@import "~@angular-mdc/theme";

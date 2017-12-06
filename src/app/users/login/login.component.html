@@ -1,1 +1,26 @@
-Hi this is login XD
+<div fxLayout="row">
+  <div fxFlex="0%" fxFlex.gt-sm="33" fxHide fxShow.gt-sm="true"></div>
+  <div fxFlex>
+    <br>
+    <mdc-card>
+      <mdc-card-primary>
+        <mdc-card-title [large]="true">Login</mdc-card-title>
+      </mdc-card-primary>
+      <mdc-card-media>
+        <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mdc-text-field label="Email" [required]="true" fullwidth="true" formControlName="email" type="email"></mdc-text-field>
+          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">An valid email is required</p>
+          <mdc-text-field label="Password" [required]="true" fullwidth="true" formControlName="password" type="password"></mdc-text-field>
+          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Password is required</p>
+        </form>
+      </mdc-card-media>
+      <mdc-card-actions>
+        <button type="button" mdc-card-button>Register</button>
+        <button type="submit" form="loginForm" mdc-card-button [disabled]="!loginForm.valid">Login</button>
+      </mdc-card-actions>
+      <mdc-linear-progress *ngIf="submitInProgress" [indeterminate]="true"></mdc-linear-progress>
+    </mdc-card>
+    <br>
+  </div>
+  <div fxFlex="0%" fxFlex.gt-sm="33" fxHide fxShow.gt-sm="true"></div>
+</div>

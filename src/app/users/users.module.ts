@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 
 import { LayoutModule } from '../shared/layout/layout.module';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from 'app/users/login/login.component';
-import { UsersRoutingModule } from 'app/users/users-routing.module';
+import { LoginComponent } from './login/login.component';
+import { UsersRoutingModule } from './users-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { UsersRoutingModule } from 'app/users/users-routing.module';
   imports: [
     CommonModule,
     LayoutModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: []
 })
