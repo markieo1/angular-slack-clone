@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MdcTemporaryDrawer } from '@angular-mdc/web';
-import { DrawerService } from 'app/core/drawer/drawer.service';
-import { BaseComponent } from 'app/shared/basecomponent.class';
+import { DrawerService } from '../drawer.service';
+import { BaseComponent } from '../../../shared/basecomponent.class';
 
 @Component({
   selector: 'app-drawer-temporary',
@@ -16,7 +16,7 @@ export class DrawerTemporaryComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.drawerService.onToggleDrawer.subscribe(() => {
+    this.subscription = this.drawerService.onToggleDrawer.subscribe(() => {
       this.toggleDrawer();
     });
   }
