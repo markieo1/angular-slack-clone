@@ -4,10 +4,12 @@
     <br>
     <mdc-card>
       <mdc-card-primary>
-        <mdc-card-title [large]="true">Login</mdc-card-title>
+        <mdc-card-title [large]="true">Register</mdc-card-title>
       </mdc-card-primary>
       <mdc-card-media>
-        <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form id="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <mdc-text-field label="Nickname" [required]="true" fullwidth="true" formControlName="nickname" type="text" [(ngModel)]="user.nickname"></mdc-text-field>
+          <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Nickname is required</p>
           <mdc-text-field label="Email" [required]="true" fullwidth="true" formControlName="email" type="email" [(ngModel)]="user.email"></mdc-text-field>
           <p mdc-text-field-helper-text [validation]="true" [persistent]="false">An valid email is required</p>
           <mdc-text-field label="Password" [required]="true" fullwidth="true" formControlName="password" type="password" [(ngModel)]="user.password"></mdc-text-field>
@@ -15,8 +17,8 @@
         </form>
       </mdc-card-media>
       <mdc-card-actions>
-        <button type="button" mdc-card-button (click)="onRegister()">Register</button>
-        <button type="submit" form="loginForm" mdc-card-button [disabled]="!loginForm.valid || submitInProgress">Login</button>
+        <button type="button" mdc-card-button (click)="onLogin()">Login</button>
+        <button type="submit" form="registerForm" mdc-card-button [disabled]="!registerForm.valid || submitInProgress">Register</button>
       </mdc-card-actions>
       <mdc-linear-progress *ngIf="submitInProgress" [indeterminate]="true"></mdc-linear-progress>
     </mdc-card>

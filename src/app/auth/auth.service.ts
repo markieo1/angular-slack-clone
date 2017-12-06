@@ -44,6 +44,36 @@ export class AuthService {
   }
 
   /**
+   * Registers the user in with the API
+   * @param user The user to register
+   */
+  public register(user: User): Observable<boolean> {
+    if (this.isLoggedIn()) {
+      return Observable.of(true);
+    }
+
+    return this.http.post(`${environment.apiUrl}/users/register`, user, this.getRequestOptions())
+      .map(r => r.json())
+      .map(body => {
+        // register successful if there's a jwt token in the response
+        const { token } = body;
+        if (token) {
+          // store username and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('token', token);
+
+          this.parseToken();
+
+          // return true to indicate successful register
+          return true;
+        } else {
+          // return false to indicate failed register
+          return false;
+        }
+      });
+  }
+
+
+  /**
    * Logs the user out
    */
   public logout(): void {

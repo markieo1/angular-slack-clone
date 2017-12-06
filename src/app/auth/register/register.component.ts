@@ -6,14 +6,14 @@ import { User } from '../../shared/user.model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: 'login.component.html'
+  selector: 'app-register',
+  templateUrl: 'register.component.html'
 })
-export class LoginComponent extends BaseComponent implements OnInit {
+export class RegisterComponent extends BaseComponent implements OnInit {
   /**
-   * The login form
+   * The register form
    */
-  public loginForm: FormGroup;
+  public registerForm: FormGroup;
 
   /**
    * Determines if a submit is in progress
@@ -21,7 +21,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   public submitInProgress: boolean;
 
   /**
-   * The user model to use for login
+   * The user model to use for register
    */
   public user: User;
 
@@ -40,12 +40,12 @@ export class LoginComponent extends BaseComponent implements OnInit {
   public onSubmit() {
     this.submitInProgress = true;
 
-    if (!this.loginForm.valid) {
+    if (!this.registerForm.valid) {
       this.submitInProgress = false;
       return;
     }
 
-    this.authService.login(this.user).subscribe((token) => {
+    this.authService.register(this.user).subscribe((token) => {
       this.submitInProgress = false;
       this.router.navigate(['/']);
     }, error => {
@@ -55,17 +55,18 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   /**
-   * Handles the button click for register
+   * Handles the button click for login
    */
-  public onRegister() {
-    this.router.navigate(['/', 'register']);
+  public onLogin() {
+    this.router.navigate(['/', 'login']);
   }
 
   /**
    * Initializes the form
    */
   private initForm() {
-    this.loginForm = new FormGroup({
+    this.registerForm = new FormGroup({
+      nickname: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', Validators.required)
     });
