@@ -1,6 +1,7 @@
 <mdc-list-group>
   <mdc-list>
-    <a mdc-list-item *ngFor="let navItem of navLinks">
+    <a mdc-list-item *ngFor="let navItem of navLinks" [routerLink]="[navItem.route]" routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive" [title]="navItem.desc">
       <mdc-icon mdc-list-item-start>{{navItem.icon}}</mdc-icon>{{navItem.name}}
     </a>
   </mdc-list>

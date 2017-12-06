@@ -1,21 +1,10 @@
-<mdc-toolbar [fixed]="true" >
+<mdc-toolbar [fixed]="true">
   <mdc-toolbar-row>
     <mdc-toolbar-section [alignStart]="true">
-      <button material-icon mdc-toolbar-menu-icon (click)="toggleDrawer();" fxShow fxHide.gt-sm="true ">menu</button>
-      <a class="demo-toolbar-logo " button mdc-toolbar-menu-icon fxHide fxShow.gt-sm="true " mdc-ripple>
-        <img src="https://trimox.github.io/angular-mdc-web/assets/hub-192x192.png " width="28 " height="28 " />
-      </a>
+      <button type="button" material-icon mdc-toolbar-menu-icon mdc-ripple (click)="toggleDrawer();" fxShow fxHide.gt-sm="true">menu</button>
       <mdc-toolbar-title>
-        <span fxHide fxShow.gt-sm="true">Angular - Material Design Components</span>
-        <span fxShow fxHide.gt-sm="true">Angular MDC</span>
+        <span>Slack</span>
       </mdc-toolbar-title>
-    </mdc-toolbar-section>
-    <mdc-toolbar-section [alignEnd]="true " [shrinkToFit]="true ">
-      <a mdc-toolbar-icon href="https://github.com/trimox/angular-mdc-web " alt="GitHub ">
-        <mdc-icon>
-          <img src="https://trimox.github.io/angular-mdc-web/assets/github-circle-white-transparent.svg " height="24 " />
-        </mdc-icon>
-      </a>
     </mdc-toolbar-section>
   </mdc-toolbar-row>
 </mdc-toolbar>
