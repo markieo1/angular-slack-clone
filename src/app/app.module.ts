@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './shared/layout/layout.module';
 import { CoreModule } from './core/core.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UsersModule } from './users/users.module';
     BrowserModule,
     CoreModule,
     LayoutModule,
+    AuthModule,
     UsersModule,
     AppRoutingModule
   ],

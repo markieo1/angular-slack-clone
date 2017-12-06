@@ -1,8 +1,9 @@
-import { User } from '../users/user.model';
+import { User } from '../shared/user.model';
 import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +27,7 @@ export class AuthService {
           this.token = token;
 
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('token', JSON.stringify({ token: token }));
+          localStorage.setItem('token', token);
 
           // return true to indicate successful login
           return true;
@@ -54,5 +55,12 @@ export class AuthService {
     return {
       headers: headers
     };
+  }
+
+  /**
+   * Determines if the user is already logged in
+   */
+  public loggedIn() {
+    return tokenNotExpired();
   }
 }

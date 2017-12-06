@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from 'app/shared/basecomponent.class';
+import { BaseComponent } from '../../shared/basecomponent.class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
-import { User } from 'app/users/user.model';
+import { User } from '../../shared/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
    */
   public user: User;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     super();
     this.user = new User();
   }
@@ -46,7 +47,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
     this.authService.login(this.user).subscribe((token) => {
       this.submitInProgress = false;
-      debugger;
+      this.router.navigate(['/']);
     }, error => {
       this.submitInProgress = false;
       console.error(error);
