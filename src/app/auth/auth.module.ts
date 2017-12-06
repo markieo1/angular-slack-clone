@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '../shared/layout/layout.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './auth-guard.service';
+import { LoginGuard } from './login-guard.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -33,7 +34,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       deps: [Http, RequestOptions]
     },
     AuthService,
-    AuthGuard
+    AuthGuard,
+    LoginGuard
   ]
 })
 export class AuthModule { }

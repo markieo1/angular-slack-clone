@@ -3,13 +3,15 @@ import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
-  private token: string;
+  private user: User;
+  private jwtHelper: JwtHelper;
 
   constructor(private http: Http) {
+    this.jwtHelper = new JwtHelper();
   }
 
   /**
@@ -17,17 +19,20 @@ export class AuthService {
    * @param user The user to login
    */
   public login(user: User): Observable<boolean> {
+    if (this.isLoggedIn()) {
+      return Observable.of(true);
+    }
+
     return this.http.post(`${environment.apiUrl}/users/login`, user, this.getRequestOptions())
       .map(r => r.json())
       .map(body => {
         // login successful if there's a jwt token in the response
         const { token } = body;
         if (token) {
-          // set token property
-          this.token = token;
-
           // store username and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('token', token);
+
+          this.parseToken();
 
           // return true to indicate successful login
           return true;
@@ -43,8 +48,38 @@ export class AuthService {
    */
   public logout(): void {
     // clear token remove user from local storage to log user out
-    this.token = null;
+    this.user = null;
     localStorage.removeItem('token');
+  }
+
+  /**
+   * Determines if the user is already logged in
+   */
+  public isLoggedIn() {
+    return tokenNotExpired();
+  }
+
+  /**
+   * Gets the currently logged in user, returns null if not logged in
+   */
+  public getUser(): User {
+    return this.user;
+  }
+
+  /**
+   * Parses the JWT token
+   */
+  private parseToken() {
+    const token = localStorage.getItem('token');
+    const parsedToken = this.jwtHelper.decodeToken(token);
+
+    const user: User = {
+      email: parsedToken.email,
+      nickname: parsedToken.nickname,
+      id: parsedToken.id
+    };
+
+    this.user = user;
   }
 
   private getRequestOptions(): RequestOptionsArgs {
@@ -55,12 +90,5 @@ export class AuthService {
     return {
       headers: headers
     };
-  }
-
-  /**
-   * Determines if the user is already logged in
-   */
-  public loggedIn() {
-    return tokenNotExpired();
   }
 }

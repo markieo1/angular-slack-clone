@@ -59,11 +59,15 @@ import 'core-js/es7/reflect';
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-
-
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-import 'rxjs/add/operator/filter';
+import 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/forkJoin';
+
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';

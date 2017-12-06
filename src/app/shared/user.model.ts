@@ -3,6 +3,11 @@
  */
 export class User {
   /**
+   * The id of the user
+   */
+  public id: string;
+
+  /**
    * The email of the user
    */
   public email: string;
