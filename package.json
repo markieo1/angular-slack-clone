@@ -35,11 +35,11 @@
     "express": "^4.16.2",
     "rxjs": "^5.5.2",
     "tslint": "^5.8.0",
+    "typescript": "~2.4.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
     "@angular/language-service": "^5.0.0",
-    "codelyzer": "^4.0.1",
-    "typescript": "~2.4.2"
+    "codelyzer": "^4.0.1"
   }
 }
