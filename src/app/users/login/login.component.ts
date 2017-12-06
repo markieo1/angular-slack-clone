@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'app/shared/basecomponent.class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
+import { User } from 'app/users/user.model';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +19,14 @@ export class LoginComponent extends BaseComponent implements OnInit {
    */
   public submitInProgress: boolean;
 
-  constructor() {
-    super()
+  /**
+   * The user model to use for login
+   */
+  public user: User;
+
+  constructor(private authService: AuthService) {
+    super();
+    this.user = new User();
   }
 
   ngOnInit(): void {
@@ -30,7 +38,19 @@ export class LoginComponent extends BaseComponent implements OnInit {
    */
   public onSubmit() {
     this.submitInProgress = true;
-    debugger;
+
+    if (!this.loginForm.valid) {
+      this.submitInProgress = false;
+      return;
+    }
+
+    this.authService.login(this.user).subscribe((token) => {
+      this.submitInProgress = false;
+      debugger;
+    }, error => {
+      this.submitInProgress = false;
+      console.error(error);
+    });
   }
 
   /**
@@ -38,8 +58,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
    */
   private initForm() {
     this.loginForm = new FormGroup({
-      'email': new FormControl('', [Validators.email, Validators.required]),
-      'password': new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', Validators.required)
     });
   }
 }
