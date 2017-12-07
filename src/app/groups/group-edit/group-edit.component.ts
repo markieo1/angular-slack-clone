@@ -16,14 +16,6 @@ export class GroupEditComponent extends BaseComponent implements OnInit, OnDestr
   }
 
   ngOnInit(): void {
-    const toolbarButtonSave: ToolbarItem = {
-      title: 'Save changes',
-      icon: 'save',
-      onClick: () => {
-        this.saveChanges();
-      }
-    };
-
     const toolbarButtonDiscard: ToolbarItem = {
       title: 'Discard changes',
       icon: 'cancel',
@@ -32,7 +24,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, OnDestr
       }
     };
 
-    this.toolbarService.setToolbarItems([toolbarButtonSave, toolbarButtonDiscard]);
+    this.toolbarService.setToolbarItems([toolbarButtonDiscard]);
   }
 
   ngOnDestroy() {
@@ -43,7 +35,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, OnDestr
   /**
    * Saves the changes
    */
-  private saveChanges(): void {
+  public saveChanges(): void {
     console.log('TODO save changes!');
   }
 
