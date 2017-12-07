@@ -1,0 +1,13 @@
+<div fxLayout="column">
+  <h1 mdc-typography-display1>Groups</h1>
+  <mdc-list *ngIf="groups && groups.length > 0" twoLine="true" border="true">
+    <mdc-list-item *ngFor="let group of groups">
+      <mdc-list-item-text>
+        {{ group.name}}
+        <mdc-list-item-secondary>
+          {{ group.createdAt | date}}
+        </mdc-list-item-secondary>
+      </mdc-list-item-text>
+    </mdc-list-item>
+  </mdc-list>
+</div>

@@ -8,6 +8,7 @@ import { LayoutModule } from './shared/layout/layout.module';
 import { CoreModule } from './core/core.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { GroupsModule } from './groups/groups.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
     LayoutModule,
     AuthModule,
     UsersModule,
+    GroupsModule,
     AppRoutingModule
   ],
   providers: [],

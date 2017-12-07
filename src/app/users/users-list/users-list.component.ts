@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../shared/basecomponent.class';
-import { GroupService } from 'app/groups/group.service';
-import { Group } from 'app/groups/group.model';
+import { User } from '../../shared/user.model';
 
 @Component({
   selector: 'app-users-list',
@@ -9,16 +8,13 @@ import { Group } from 'app/groups/group.model';
 })
 export class UsersListComponent extends BaseComponent implements OnInit {
 
-  public groups: Group[];
+  public users: User[];
 
-  constructor(private groupService: GroupService) {
+  constructor() {
     super();
   }
 
   ngOnInit(): void {
-    this.groupService.getGroups().subscribe((groups) => {
-      this.groups = groups;
-    });
-  }
 
+  }
 }

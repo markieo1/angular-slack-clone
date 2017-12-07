@@ -1,10 +1,13 @@
 <div fxLayout="column">
-  <mdc-list>
-    <a mdc-list-item *ngFor="let group of groups">
-      {{ group.name}}
-      <mdc-list-item-secondary>
-        {{ group.creationDate | date}}
-      </mdc-list-item-secondary>
-    </a>
+  <mdc-list twoLine="true" border="true">
+      <mdc-list-item *ngFor="let number of [0,1,2,3,4]">
+          <mdc-list-item-text>
+            Single-line item
+            <mdc-list-item-secondary>Secondary text</mdc-list-item-secondary>
+          </mdc-list-item-text>
+        </mdc-list-item>
+
   </mdc-list>
+
+  TODO: Load users
 </div>

@@ -7,15 +7,15 @@ import { RequestOptionsArgs, Headers } from '@angular/http';
 
 @Injectable()
 export class GroupService {
-    constructor(private authHttp: AuthHttp) {
-    }
+  constructor(private authHttp: AuthHttp) {
+  }
 
-    /**
-     * Gets all the groups
-     */
-    getGroups(): Observable<Array<Group>> {
-        return this.authHttp.get(`${environment.apiUrl}/groups`)
-            .map(r => r.json());
-    }
+  /**
+   * Gets all the groups
+   */
+  getGroups(): Observable<Array<Group>> {
+    return this.authHttp.get(`${environment.apiUrl}/groups`)
+      .map(r => r.json());
+  }
 }
 

@@ -8,7 +8,7 @@ export class DrawerListComponent {
   navLinks = [
     {
       name: 'Dashboard',
-      route: '/',
+      route: '/dashboard',
       icon: 'dashboard',
       desc: 'An overview of what you can do in this application'
     },
