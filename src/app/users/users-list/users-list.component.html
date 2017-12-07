@@ -1,22 +1,10 @@
 <div fxLayout="column">
   <mdc-list>
 
-
-    <a mdc-list-item style="overflow: visible;">
-      <mdc-icon mdc-list-item-start>network_wifi</mdc-icon>Some group name
-      <div mdc-list-item-end>
-        <div mdc-menu-anchor>
-          <mdc-menu #menu (select)="handleMenuSelect($event)" direction='rtl'>
-            <mdc-menu-item id="0">Item 1</mdc-menu-item>
-            <mdc-menu-item id="1" [disabled]="true">Item 2</mdc-menu-item>
-            <mdc-menu-item id="2">Item 3</mdc-menu-item>
-            <mdc-menu-divider></mdc-menu-divider>
-            <mdc-menu-item id="3">Item 4</mdc-menu-item>
-          </mdc-menu>
-        </div>
-        <mdc-icon (click)="openMenu()">more_vert</mdc-icon>
-      </div>
-
+    <a mdc-list-item>
+      <mdc-icon mdc-list-item-start>bluetooth</mdc-icon>Some group name
+      <mdc-icon mdc-list-item-end>info</mdc-icon>
+    </a>
     </a>
     <a mdc-list-item>
       <mdc-icon mdc-list-item-start>bluetooth</mdc-icon>Bluetooth
