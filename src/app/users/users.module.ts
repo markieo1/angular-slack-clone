@@ -6,6 +6,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '../auth/auth.module';
 import { UsersListComponent } from './users-list/users-list.component';
+import { GroupsModule } from '../groups/group.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UsersListComponent } from './users-list/users-list.component';
     UsersRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthModule
+    AuthModule,
+    GroupsModule
   ]
 })
 export class UsersModule { }
