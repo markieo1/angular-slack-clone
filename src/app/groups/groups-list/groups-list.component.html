@@ -4,7 +4,7 @@
       <mdc-list-item-text>
         {{ group.name}}
         <mdc-list-item-secondary>
-          {{ group.createdAt | date}}
+          Created: {{ group.createdAt | date:'dd/MM/yyyy HH:mm'}}
         </mdc-list-item-secondary>
       </mdc-list-item-text>
     </mdc-list-item>
