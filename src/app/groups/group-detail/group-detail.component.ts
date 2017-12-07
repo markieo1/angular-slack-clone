@@ -9,8 +9,8 @@ import { GroupService } from '../group.service';
   templateUrl: './group-detail.component.html'
 })
 export class GroupDetailComponent extends BaseComponent implements OnInit {
+  public group: Group;
   private id: string;
-  private group: Group;
 
   constructor(private route: ActivatedRoute, private router: Router, private groupService: GroupService) {
     super();
