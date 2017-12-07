@@ -1,10 +1,20 @@
-<mdc-toolbar [fixed]="true">
+<mdc-toolbar fixed="true">
   <mdc-toolbar-row>
-    <mdc-toolbar-section [alignStart]="true">
+    <mdc-toolbar-section alignStart="true">
       <button type="button" material-icon mdc-toolbar-menu-icon mdc-ripple (click)="toggleDrawer();" fxShow fxHide.gt-sm="true">menu</button>
       <mdc-toolbar-title>
         <span>Slack</span>
       </mdc-toolbar-title>
+    </mdc-toolbar-section>
+    <mdc-toolbar-section alignEnd="true">
+      <div *ngFor="let item of toolbarItems">
+        <a *ngIf="!item.route" (click)="item.onClick()">
+          <div mdc-toolbar-icon material-icon [title]="item.title">{{ item.icon }}</div>
+        </a>
+        <a *ngIf="item.route" [routerLink]="[item.route]">
+          <div mdc-toolbar-icon material-icon [title]="item.title">{{ item.icon }}</div>
+        </a>
+      </div>
     </mdc-toolbar-section>
   </mdc-toolbar-row>
 </mdc-toolbar>

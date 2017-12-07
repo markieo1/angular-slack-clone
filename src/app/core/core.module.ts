@@ -9,6 +9,7 @@ import { DrawerPermanentComponent } from './drawer/permament/drawer-permanent.co
 import { DrawerTemporaryComponent } from './drawer/temporary/drawer-temporary.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { ToolbarService } from './toolbar/toolbar.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,6 @@ import { RouterModule } from '@angular/router';
     ToolbarComponent,
     NotFoundComponent
   ],
-  providers: [DrawerService]
+  providers: [DrawerService, ToolbarService]
 })
 export class CoreModule { }

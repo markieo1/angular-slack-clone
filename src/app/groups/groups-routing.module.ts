@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: GroupDetailComponent
+      },
+      {
+        path: ':id/edit',
+        component: GroupEditComponent
       }
     ]
   },
