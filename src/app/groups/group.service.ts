@@ -7,6 +7,8 @@ import { RequestOptionsArgs, Headers } from '@angular/http';
 
 @Injectable()
 export class GroupService {
+  private groups: Observable<Array<Group>>;
+
   constructor(private authHttp: AuthHttp) {
   }
 
@@ -14,8 +16,13 @@ export class GroupService {
    * Gets all the groups
    */
   getGroups(): Observable<Array<Group>> {
-    return this.authHttp.get(`${environment.apiUrl}/groups`)
-      .map(r => r.json());
+    if (!this.groups) {
+      this.groups = this.authHttp.get(`${environment.apiUrl}/groups`)
+        .map(r => r.json())
+        .publishReplay(1)
+        .refCount();
+    }
+    return this.groups;
   }
 
   /**
@@ -23,7 +30,8 @@ export class GroupService {
    * @param id The id of the group
    */
   getGroup(id: string): Observable<Group> {
-    return this.authHttp.get(`${environment.apiUrl}/groups/${id}`)
-      .map(r => r.json());
+    return this.getGroups()
+      .flatMap(x => x)
+      .filter((group) => group.id === id);
   }
 }
