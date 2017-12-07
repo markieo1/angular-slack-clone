@@ -25,15 +25,23 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
         this.loadGroup();
       });
 
-    const toolbarButton: ToolbarItem = {
+    const toolbarButtonEdit: ToolbarItem = {
       title: 'Edit this group',
       icon: 'edit',
       onClick: () => {
-        this.router.navigate(['edit'], { relativeTo: this.route });
+        this.editGroup();
       }
     };
 
-    this.toolbarService.setToolbarItems([toolbarButton]);
+    const toolbarButtonDiscard: ToolbarItem = {
+      title: 'Delete this group',
+      icon: 'delete_forever',
+      onClick: () => {
+        this.deleteGroup();
+      }
+    };
+
+    this.toolbarService.setToolbarItems([toolbarButtonEdit, toolbarButtonDiscard]);
   }
 
   ngOnDestroy() {
@@ -48,6 +56,23 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
   private loadGroup() {
     this.subscription = this.groupService.getGroup(this.id).subscribe((group) => {
       this.group = group;
+    });
+  }
+
+
+  /**
+   * Edits a group
+   */
+  private editGroup(): void {
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  /**
+   * Deletes a group
+   */
+  private deleteGroup(): void {
+    this.groupService.deleteGroup(this.id).subscribe(() => {
+      this.router.navigate(['../'], { relativeTo: this.route });
     });
   }
 }

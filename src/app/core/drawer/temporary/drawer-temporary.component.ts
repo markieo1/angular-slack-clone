@@ -12,7 +12,7 @@ export class DrawerTemporaryComponent extends BaseComponent implements OnInit {
   drawer: MdcTemporaryDrawer;
 
   constructor(private drawerService: DrawerService) {
-    super()
+    super();
   }
 
   ngOnInit(): void {

@@ -26,13 +26,18 @@ export class GroupEditComponent extends BaseComponent implements OnInit, OnDestr
 
     const toolbarButtonDiscard: ToolbarItem = {
       title: 'Discard changes',
-      icon: 'delete_forever',
+      icon: 'cancel',
       onClick: () => {
         this.discardChanges();
       }
     };
 
     this.toolbarService.setToolbarItems([toolbarButtonSave, toolbarButtonDiscard]);
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.toolbarService.resetItems();
   }
 
   /**
