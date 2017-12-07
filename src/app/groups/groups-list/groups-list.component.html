@@ -1,7 +1,6 @@
 <div fxLayout="column">
-  <h1 mdc-typography-display1>Groups</h1>
   <mdc-list *ngIf="groups && groups.length > 0" twoLine="true" border="true">
-    <mdc-list-item *ngFor="let group of groups">
+    <mdc-list-item *ngFor="let group of groups" [routerLink]="group.id" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
       <mdc-list-item-text>
         {{ group.name}}
         <mdc-list-item-secondary>

@@ -7,10 +7,18 @@ import { AuthModule } from '../auth/auth.module';
 import { GroupService } from './group.service';
 import { GroupsListComponent } from './groups-list/groups-list.component';
 import { GroupsRoutingModule } from './groups-routing.module';
+import { GroupStartComponent } from './group-start/group-start.component';
+import { GroupEditComponent } from './group-edit/group-edit.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { GroupsComponent } from './groups.component';
 
 @NgModule({
   declarations: [
-    GroupsListComponent
+    GroupsListComponent,
+    GroupStartComponent,
+    GroupEditComponent,
+    GroupDetailComponent,
+    GroupsComponent
   ],
   imports: [
     CommonModule,

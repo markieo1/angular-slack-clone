@@ -17,5 +17,13 @@ export class GroupService {
     return this.authHttp.get(`${environment.apiUrl}/groups`)
       .map(r => r.json());
   }
-}
 
+  /**
+   * Gets a single group
+   * @param id The id of the group
+   */
+  getGroup(id: string): Observable<Group> {
+    return this.authHttp.get(`${environment.apiUrl}/groups/${id}`)
+      .map(r => r.json());
+  }
+}

@@ -1,13 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/auth-guard.service';
-import { GroupsListComponent } from './groups-list/groups-list.component';
+import { GroupStartComponent } from './group-start/group-start.component';
+import { GroupEditComponent } from './group-edit/group-edit.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { GroupsComponent } from './groups.component';
 
 const routes: Routes = [
   {
     path: 'groups',
-    component: GroupsListComponent,
-    canActivate: [AuthGuard]
+    component: GroupsComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: GroupStartComponent
+      },
+      {
+        path: 'new',
+        component: GroupEditComponent
+      },
+      {
+        path: ':id',
+        component: GroupDetailComponent
+      }
+    ]
   },
 ];
 
