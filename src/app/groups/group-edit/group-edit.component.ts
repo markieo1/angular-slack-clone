@@ -5,8 +5,9 @@ import { ToolbarService } from '../../core/toolbar/toolbar.service';
 import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
 import { MdcDialogComponent } from '@angular-mdc/web';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Group } from '../group.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-group-edit',
@@ -47,7 +48,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
   private id: string;
 
   constructor(private groupService: GroupService,
-    private toolbarService: ToolbarService, private route: ActivatedRoute, private router: Router) {
+    private toolbarService: ToolbarService, private route: ActivatedRoute, private location: Location) {
     super();
 
     this.group = new Group();
@@ -56,14 +57,14 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
   ngOnInit(): void {
     this.initForm();
 
-    this.route.params.subscribe(params => {
+    this.subscription = this.route.params.subscribe(params => {
       this.id = params.id;
       this.isNew = params.id == null;
 
       this.loadGroup();
     });
 
-    this.editDialog._cancel.subscribe(() => {
+    this.subscription = this.editDialog._cancel.subscribe(() => {
       this.discardChanges();
     });
   }
@@ -91,9 +92,9 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
       groupObservable = this.groupService.update(this.id, this.group);
     }
 
-    groupObservable.subscribe(() => {
+    this.subscription = groupObservable.subscribe(() => {
       this.submitInProgress = false;
-      this.router.navigate(['../'], { relativeTo: this.route });
+      this.location.back();
     }, error => {
       this.submitInProgress = false;
       console.error(error);
@@ -104,7 +105,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
    * Discards the made changes
    */
   public discardChanges(): void {
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.location.back();
   }
 
   /**
