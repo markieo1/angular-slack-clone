@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { BaseComponent } from '../../shared/basecomponent.class';
-import { Location } from '@angular/common';
 import { GroupService } from '../../groups/group.service';
 import { ToolbarService } from '../../core/toolbar/toolbar.service';
 import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
@@ -47,7 +46,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
    */
   private id: string;
 
-  constructor(private location: Location, private groupService: GroupService,
+  constructor(private groupService: GroupService,
     private toolbarService: ToolbarService, private route: ActivatedRoute, private router: Router) {
     super();
 
@@ -105,7 +104,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
    * Discards the made changes
    */
   public discardChanges(): void {
-    this.location.back();
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   /**

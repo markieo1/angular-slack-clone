@@ -1,12 +1,14 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseComponent } from '../../shared/basecomponent.class';
 import { GroupService } from '../group.service';
 import { Group } from '../group.model';
 import { MdcList } from '@angular-mdc/web';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-groups-list',
-  templateUrl: 'groups-list.component.html'
+  templateUrl: 'groups-list.component.html',
+  styleUrls: ['groups-list.component.scss']
 })
 export class GroupsListComponent extends BaseComponent implements OnInit {
 
@@ -18,7 +20,7 @@ export class GroupsListComponent extends BaseComponent implements OnInit {
   @ViewChild(MdcList)
   public mdcList: MdcList;
 
-  constructor(private groupService: GroupService, private cdr: ChangeDetectorRef, private zone: NgZone) {
+  constructor(private groupService: GroupService, private router: Router) {
     super();
     this.groups = [];
   }
@@ -33,5 +35,12 @@ export class GroupsListComponent extends BaseComponent implements OnInit {
         }
       }, 100);
     });
+  }
+
+  /**
+   * Creates a new group
+   */
+  public createNewGroup(): void {
+    this.router.navigate(['groups', 'new']);
   }
 }
