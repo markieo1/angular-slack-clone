@@ -26,15 +26,7 @@ export class GroupsListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.groupService.getAll().subscribe((groups) => {
-      this.groups = groups;
-
-      setTimeout(() => {
-        if (this.mdcList) {
-          this.mdcList.ngAfterContentInit();
-        }
-      }, 100);
-    });
+    this.getGroups();
   }
 
   /**
@@ -42,5 +34,26 @@ export class GroupsListComponent extends BaseComponent implements OnInit {
    */
   public createNewGroup(): void {
     this.router.navigate(['groups', 'new']);
+  }
+
+  /**
+   * Gets the groups
+   */
+  private getGroups() {
+    const subscription = (groups) => {
+      this.groups = groups;
+
+      setTimeout(() => {
+        if (this.mdcList) {
+          this.mdcList.ngAfterContentInit();
+        }
+      }, 100);
+    };
+
+    this.subscription = this.groupService.getAll().subscribe(subscription);
+
+    this.subscription = this.groupService.getOnChangeEvent().subscribe(() => {
+      this.subscription = this.groupService.getAll().subscribe(subscription);
+    });
   }
 }

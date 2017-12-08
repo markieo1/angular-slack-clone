@@ -26,15 +26,7 @@ export class UsersListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getAll().subscribe((users) => {
-      this.users = users;
-
-      setTimeout(() => {
-        if (this.mdcList) {
-          this.mdcList.ngAfterContentInit();
-        }
-      }, 100);
-    });
+    this.getUsers();
   }
 
   /**
@@ -42,5 +34,26 @@ export class UsersListComponent extends BaseComponent implements OnInit {
    */
   public createNewUser(): void {
     this.router.navigate(['users', 'new']);
+  }
+
+  /**
+   * Gets the users
+   */
+  private getUsers() {
+    const subscription = (users) => {
+      this.users = users;
+
+      setTimeout(() => {
+        if (this.mdcList) {
+          this.mdcList.ngAfterContentInit();
+        }
+      }, 100);
+    };
+
+    this.subscription = this.userService.getAll().subscribe(subscription);
+
+    this.subscription = this.userService.getOnChangeEvent().subscribe(() => {
+      this.subscription = this.userService.getAll().subscribe(subscription);
+    });
   }
 }

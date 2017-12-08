@@ -1,6 +1,6 @@
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { BaseModel } from 'app/shared/base/basemodel.class';
@@ -16,32 +16,54 @@ export abstract class BaseCrudService<T extends BaseModel> {
    */
   protected authHttp: AuthHttp;
 
-  /**
-   * Subject used for caching
-   */
-  private cacheSubject = new BehaviorSubject<T[]>([]);
+  protected onChange: EventEmitter<void>;
 
   /**
-   * The items observable
+   * Items observable
    */
-  private items: Observable<Array<T>>;
+  private items$: Observable<Array<T>>;
+
+  /**
+   * The items
+   */
+  private items: Array<T>;
 
   constructor(resource: string, authHttp: AuthHttp) {
     this.authHttp = authHttp;
 
     this.resource = resource;
 
-    this.fetchData();
+    this.onChange = new EventEmitter();
+  }
+
+  /**
+   * Gets the on change event emitter
+   */
+  public getOnChangeEvent(): Observable<void> {
+    return this.onChange.asObservable();
   }
 
   /**
    * Gets all the T
    */
   public getAll(): Observable<Array<T>> {
-    if (!this.items) {
-      this.items = this.cacheSubject.asObservable();
+    if (this.items) {
+      return Observable.of(this.items);
+    } else if (this.items$) {
+      return this.items$;
+    } else {
+      this.items$ = this.authHttp.get(`${environment.apiUrl}/${this.resource}`)
+        .map(r => r.json())
+        .map(response => {
+          // when the cached data is available we don't need the `Observable` reference anymore
+          this.items$ = null;
+          this.items = response;
+          return this.items;
+        })
+        .share();
+
+      return this.items$;
     }
-    return this.items;
   }
 
   /**
@@ -91,18 +113,12 @@ export abstract class BaseCrudService<T extends BaseModel> {
   }
 
   /**
-   * Refetches the data
-   */
-  protected fetchData() {
-    this.authHttp.get(`${environment.apiUrl}/${this.resource}`)
-      .map(r => r.json())
-      .subscribe(items => this.cacheSubject.next(items));
-  }
-
-  /**
    * Resets the cache
    */
   protected resetCache() {
-    this.fetchData();
+    this.items$ = null;
+    this.items = null;
+
+    this.onChange.emit();
   }
 }
