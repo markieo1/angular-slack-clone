@@ -6,13 +6,14 @@
   </mdc-dialog-header>
   <mdc-dialog-body>
     <form id="groupForm" [formGroup]="groupForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="column">
-      <mdc-text-field fxFlex placeholder="Name" label="Name" #name id="name" [required]="true" formControlName="name" type="name" [(ngModel)]="group.name"></mdc-text-field>
+      <mdc-text-field fxFlex placeholder="Name" label="Name" #name id="name" [required]="true" formControlName="name" type="name"
+        [(ngModel)]="group.name"></mdc-text-field>
       <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Name is required</p>
     </form>
   </mdc-dialog-body>
   <mdc-dialog-footer>
     <button type="button" (click)="discardChanges()" mdc-dialog-button cancel="true">Cancel</button>
-    <button type="submit" form="groupForm" mdc-dialog-button accept="true">Save</button>
+    <button type="submit" form="groupForm" mdc-dialog-button [disabled]="!groupForm.valid || submitInProgress">Save</button>
   </mdc-dialog-footer>
-
+  <mdc-linear-progress *ngIf="submitInProgress" [indeterminate]="true"></mdc-linear-progress>
 </mdc-dialog>
