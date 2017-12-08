@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { BaseComponent } from 'app/shared/basecomponent.class';
+import { BaseComponent } from './shared/base/basecomponent.class';
 
 @Component({
   selector: 'app-root',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../shared/basecomponent.class';
+import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../../shared/user.model';

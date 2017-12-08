@@ -1,12 +1,9 @@
+import { BaseModel } from '../shared/base/basemodel.class';
+
 /**
  * Model representing an group
  */
-export class Group {
-  /**
-   * The id of the group
-   */
-  public id: string;
-
+export class Group extends BaseModel {
   /**
    * The name of the group
    */
@@ -26,4 +23,8 @@ export class Group {
    * The reference to the messages send in the group
    */
   messages: [string];
+
+  constructor() {
+    super(null);
+  }
 }

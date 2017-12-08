@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BaseComponent } from '../../shared/basecomponent.class';
+import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { GroupService } from '../group.service';
 import { Group } from '../group.model';
 import { MdcList } from '@angular-mdc/web';
@@ -26,7 +26,7 @@ export class GroupsListComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.groupService.getGroups().subscribe((groups) => {
+    this.groupService.getAll().subscribe((groups) => {
       this.groups = groups;
 
       setTimeout(() => {

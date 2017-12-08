@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { BaseComponent } from '../../shared/basecomponent.class';
+import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Group } from '../group.model';
 import { GroupService } from '../group.service';
@@ -62,12 +62,12 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
    * Loads the group
    */
   private loadGroup() {
-    this.subscription = this.groupService.getGroup(this.id).subscribe((group) => {
+    this.subscription = this.groupService.get(this.id).subscribe((group) => {
       this.group = group;
 
       this.toolbarService.setTitle(this.group.name);
     }, (error) => {
-      console.error(error);
+      console.error('Group was not found!', error);
       this.router.navigate(['../'], { relativeTo: this.route });
     });
   }

@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { DrawerService } from '../drawer/drawer.service';
 import { ToolbarService } from './toolbar.service';
-import { BaseComponent } from '../../shared/basecomponent.class';
+import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { ToolbarItem } from './toolbar-item.class';
 import { AuthService } from '../../auth/auth.service';
 

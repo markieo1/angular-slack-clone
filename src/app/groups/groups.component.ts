@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BaseComponent } from '../shared/basecomponent.class';
+import { BaseComponent } from '../shared/base/basecomponent.class';
 import { Router, NavigationEnd } from '@angular/router';
 import { ObservableMedia } from '@angular/flex-layout';
 import { ToolbarService } from '../core/toolbar/toolbar.service';

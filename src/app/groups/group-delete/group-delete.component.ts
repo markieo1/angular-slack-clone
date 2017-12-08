@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input } from '@angular/core';
-import { BaseComponent } from '../../shared/basecomponent.class';
+import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { GroupService } from '../../groups/group.service';
 import { MdcDialogComponent } from '@angular-mdc/web';
 import { Location } from '@angular/common';
@@ -45,7 +45,7 @@ export class GroupDeleteComponent extends BaseComponent {
   public deleteGroup(): void {
     this.deleteInProgress = true;
 
-    this.groupService.deleteGroup(this.id).subscribe((deleted) => {
+    this.groupService.delete(this.id).subscribe((deleted) => {
       this.deleteInProgress = false;
       this.deleteDialog.close();
       this.router.navigate(['../'], { relativeTo: this.route });

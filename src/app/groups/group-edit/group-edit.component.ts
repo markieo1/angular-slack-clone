@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { BaseComponent } from '../../shared/basecomponent.class';
+import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { GroupService } from '../../groups/group.service';
 import { ToolbarService } from '../../core/toolbar/toolbar.service';
 import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
@@ -114,7 +114,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
    * Loads the group
    */
   private loadGroup() {
-    this.groupService.getGroup(this.id).subscribe((group) => {
+    this.groupService.get(this.id).subscribe((group) => {
       this.group = group;
     });
   }

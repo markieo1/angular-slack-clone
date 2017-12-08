@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MdcTemporaryDrawer } from '@angular-mdc/web';
 import { DrawerService } from '../drawer.service';
-import { BaseComponent } from '../../../shared/basecomponent.class';
+import { BaseComponent } from '../../../shared/base/basecomponent.class';
 import { AuthService } from '../../../auth/auth.service';
 
 @Component({
