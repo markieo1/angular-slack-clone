@@ -39,7 +39,7 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
   /**
    * Determines if we are creating a new one
    */
-  private isNew = false;
+  public isNew = false;
 
   /**
    * The id of the group if editing
