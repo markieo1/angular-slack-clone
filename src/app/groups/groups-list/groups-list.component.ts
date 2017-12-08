@@ -27,11 +27,11 @@ export class GroupsListComponent extends BaseComponent implements OnInit {
     this.groupService.getGroups().subscribe((groups) => {
       this.groups = groups;
 
-      if (this.mdcList) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (this.mdcList) {
           this.mdcList.ngAfterContentInit();
-        }, 100);
-      }
+        }
+      }, 100);
     });
   }
 }

@@ -1,4 +1,18 @@
-Edit
-<button type="button" (click)="saveChanges()" mdc-fab [position]="'bottom-right'">
-  <mdc-icon>save</mdc-icon>
-</button>
+<mdc-dialog>
+  <mdc-dialog-header>
+    <mdc-dialog-header-title>
+      Edit Group
+    </mdc-dialog-header-title>
+  </mdc-dialog-header>
+  <mdc-dialog-body>
+    <form id="groupForm" [formGroup]="groupForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="column">
+      <mdc-text-field fxFlex placeholder="Name" label="Name" #name id="name" [required]="true" formControlName="name" type="name" [(ngModel)]="group.name"></mdc-text-field>
+      <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Name is required</p>
+    </form>
+  </mdc-dialog-body>
+  <mdc-dialog-footer>
+    <button type="button" (click)="discardChanges()" mdc-dialog-button cancel="true">Cancel</button>
+    <button type="submit" form="groupForm" mdc-dialog-button accept="true">Save</button>
+  </mdc-dialog-footer>
+
+</mdc-dialog>

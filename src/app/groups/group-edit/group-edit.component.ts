@@ -1,42 +1,122 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { BaseComponent } from '../../shared/basecomponent.class';
 import { Location } from '@angular/common';
 import { GroupService } from '../../groups/group.service';
 import { ToolbarService } from '../../core/toolbar/toolbar.service';
 import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
+import { MdcDialogComponent } from '@angular-mdc/web';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Group } from '../group.model';
 
 @Component({
   selector: 'app-group-edit',
-  templateUrl: './group-edit.component.html'
+  templateUrl: './group-edit.component.html',
+  styleUrls: ['group-edit.component.scss']
 })
-export class GroupEditComponent extends BaseComponent implements OnInit, OnDestroy {
+export class GroupEditComponent extends BaseComponent implements OnInit, AfterViewInit {
 
-  constructor(private location: Location, private groupService: GroupService, private toolbarService: ToolbarService) {
+  /**
+   * The edit dialog component
+   */
+  @ViewChild(MdcDialogComponent)
+  public editDialog: MdcDialogComponent;
+
+  /**
+   * The group form
+   */
+  public groupForm: FormGroup;
+
+  /**
+   * The group we are editing
+   */
+  public group: Group;
+
+  /**
+   * Determines if a submit is in progress
+   */
+  public submitInProgress: boolean;
+
+  /**
+   * Determines if we are creating a new one
+   */
+  private isNew = false;
+
+  /**
+   * The id of the group if editing
+   */
+  private id: string;
+
+  constructor(private location: Location, private groupService: GroupService,
+    private toolbarService: ToolbarService, private route: ActivatedRoute, private router: Router) {
     super();
+
+    this.group = new Group();
   }
 
   ngOnInit(): void {
-    const toolbarButtonDiscard: ToolbarItem = {
-      title: 'Discard changes',
-      icon: 'cancel',
-      onClick: () => {
-        this.discardChanges();
-      }
-    };
+    this.initForm();
 
-    this.toolbarService.setToolbarItems([toolbarButtonDiscard]);
+    this.route.params.subscribe(params => {
+      this.id = params.id;
+      this.isNew = params.id == null;
+
+      this.loadGroup();
+    });
+
+    this.editDialog._cancel.subscribe(() => {
+      this.discardChanges();
+    });
   }
 
-  ngOnDestroy() {
-    super.ngOnDestroy();
-    this.toolbarService.resetItems();
+  ngAfterViewInit(): void {
+    this.editDialog.show();
   }
 
   /**
    * Saves the changes
    */
-  public saveChanges(): void {
-    console.log('TODO save changes!');
+  public onSubmit(): void {
+    this.submitInProgress = true;
+
+    if (!this.groupForm.valid) {
+      this.submitInProgress = false;
+      return;
+    }
+
+    let groupObservable = null;
+
+    if (this.isNew) {
+      groupObservable = this.groupService.create(this.group);
+    } else {
+      groupObservable = this.groupService.update(this.id, this.group);
+    }
+
+    groupObservable.subscribe(() => {
+      this.submitInProgress = false;
+      this.router.navigate(['../'], { relativeTo: this.route });
+    }, error => {
+      this.submitInProgress = false;
+      console.error(error);
+    });
+  }
+
+  /**
+   * Loads the group
+   */
+  private loadGroup() {
+    this.groupService.getGroup(this.id).subscribe((group) => {
+      this.group = group;
+    });
+  }
+
+  /**
+   * Initializes the form
+   */
+  private initForm() {
+    this.groupForm = new FormGroup({
+      name: new FormControl('', Validators.required)
+    });
   }
 
   /**

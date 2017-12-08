@@ -46,6 +46,20 @@ export class GroupService {
       .finally(() => this.resetCache());
   }
 
+  create(group: Group): Observable<Group> {
+    return this.authHttp.post(`${environment.apiUrl}/groups`, group)
+      .map(response => response.json())
+      .finally(() => this.resetCache());
+  }
+
+  update(id: string, group: Group): Observable<Group> {
+    return this.authHttp.put(`${environment.apiUrl}/groups/${id}`, group)
+      .map(response => response.json());
+  }
+
+  /**
+   * Refetches the data
+   */
   private fetchData() {
     this.authHttp.get(`${environment.apiUrl}/groups`)
       .map(r => r.json())
