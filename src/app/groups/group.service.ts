@@ -32,8 +32,14 @@ export class GroupService {
    */
   getGroup(id: string): Observable<Group> {
     return this.getGroups()
-      .flatMap(x => x)
-      .filter((group) => group.id === id);
+      .map((groups) => {
+        const group = groups.filter((grp) => grp.id === id)[0];
+        if (!group) {
+          throw new Error('Group not found!');
+        }
+
+        return group;
+      });
   }
 
   /**

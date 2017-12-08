@@ -1,16 +1,24 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BaseComponent } from '../../shared/basecomponent.class';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Group } from '../group.model';
 import { GroupService } from '../group.service';
 import { ToolbarService } from '../../core/toolbar/toolbar.service';
 import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
+import { GroupDeleteComponent } from 'app/groups/group-delete/group-delete.component';
 
 @Component({
   selector: 'app-group-detail',
   templateUrl: './group-detail.component.html'
 })
 export class GroupDetailComponent extends BaseComponent implements OnInit, OnDestroy {
+
+  /**
+   * The delete dialog component
+   */
+  @ViewChild(GroupDeleteComponent)
+  public deleteDialog: GroupDeleteComponent;
+
   public group: Group;
   private id: string;
 
@@ -58,9 +66,11 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
       this.group = group;
 
       this.toolbarService.setTitle(this.group.name);
+    }, (error) => {
+      console.error(error);
+      this.router.navigate(['../'], { relativeTo: this.route });
     });
   }
-
 
   /**
    * Edits a group
@@ -73,8 +83,6 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
    * Deletes a group
    */
   private deleteGroup(): void {
-    this.groupService.deleteGroup(this.id).subscribe(() => {
-      this.router.navigate(['../'], { relativeTo: this.route });
-    });
+    this.deleteDialog.showDialog();
   }
 }

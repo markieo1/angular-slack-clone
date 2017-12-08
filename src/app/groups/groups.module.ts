@@ -11,6 +11,7 @@ import { GroupStartComponent } from './group-start/group-start.component';
 import { GroupEditComponent } from './group-edit/group-edit.component';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupsComponent } from './groups.component';
+import { GroupDeleteComponent } from './group-delete/group-delete.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { GroupsComponent } from './groups.component';
     GroupStartComponent,
     GroupEditComponent,
     GroupDetailComponent,
+    GroupDeleteComponent,
     GroupsComponent
   ],
   imports: [
