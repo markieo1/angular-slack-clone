@@ -25,6 +25,6 @@ export class Group extends BaseModel {
   messages: [string];
 
   constructor() {
-    super(null);
+    super();
   }
 }

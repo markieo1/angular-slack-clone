@@ -1,12 +1,9 @@
+import { BaseModel } from '../shared/base/basemodel.class';
+
 /**
  * Model representing an user
  */
-export class User {
-  /**
-   * The id of the user
-   */
-  public id: string;
-
+export class User extends BaseModel {
   /**
    * The email of the user
    */
@@ -21,4 +18,8 @@ export class User {
    * The nickname of the user
    */
   public nickname: string;
+
+  constructor() {
+    super();
+  }
 }
