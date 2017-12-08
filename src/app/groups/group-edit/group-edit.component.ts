@@ -102,6 +102,13 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
   }
 
   /**
+   * Discards the made changes
+   */
+  public discardChanges(): void {
+    this.location.back();
+  }
+
+  /**
    * Loads the group
    */
   private loadGroup() {
@@ -117,12 +124,5 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
     this.groupForm = new FormGroup({
       name: new FormControl('', Validators.required)
     });
-  }
-
-  /**
-   * Discards the made changes
-   */
-  private discardChanges(): void {
-    this.location.back();
   }
 }
