@@ -61,7 +61,9 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
       this.id = params.id;
       this.isNew = params.id == null;
 
-      this.loadGroup();
+      if (!this.isNew) {
+        this.loadGroup();
+      }
     });
 
     this.subscription = this.editDialog._cancel.subscribe(() => {
