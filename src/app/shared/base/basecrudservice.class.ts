@@ -12,6 +12,11 @@ export abstract class BaseCrudService<T extends BaseModel> {
   protected resource: string;
 
   /**
+   * The http lib to use for authenticated calls
+   */
+  protected authHttp: AuthHttp;
+
+  /**
    * Subject used for caching
    */
   private cacheSubject = new BehaviorSubject<T[]>([]);
@@ -20,11 +25,6 @@ export abstract class BaseCrudService<T extends BaseModel> {
    * The items observable
    */
   private items: Observable<Array<T>>;
-
-  /**
-   * The http lib to use for authenticated calls
-   */
-  private authHttp: AuthHttp;
 
   constructor(resource: string, authHttp: AuthHttp) {
     this.authHttp = authHttp;

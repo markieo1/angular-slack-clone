@@ -1,0 +1,11 @@
+<div fxLayout="column" class="mdc-padding" fxFill>
+  <div fxLayout="row" fxFill>
+    <div fxFlex fxFill fxFlex.gt-sm="33" fxHide fxShow.gt-sm="true" [fxShow.xs]="!isDisplayingDetail">
+      <app-users-list></app-users-list>
+    </div>
+    <div fxFlex="1"></div>
+    <div fxFlex [fxShow.xs]="isDisplayingDetail" fxShow.gt-sm="true">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<mdc-dialog>
+  <mdc-dialog-header>
+    <mdc-dialog-header-title>
+      {{ isNew ? 'New' : 'Edit' }} user
+    </mdc-dialog-header-title>
+  </mdc-dialog-header>
+  <mdc-dialog-body>
+    <form id="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="column">
+      <mdc-text-field fxFlex placeholder="Nickname" label="Nickname" required="true" formControlName="nickname" type="text" [(ngModel)]="user.nickname"></mdc-text-field>
+      <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Nickname is required</p>
+      <mdc-text-field fxFlex placeholder="Email" label="Email" required="true" formControlName="email" type="email" [(ngModel)]="user.email"></mdc-text-field>
+      <p mdc-text-field-helper-text [validation]="true" [persistent]="false">An valid email is required</p>
+      <mdc-text-field fxFlex placeholder="Password" label="Password" [required]="isNew" formControlName="password" type="password"
+        [(ngModel)]="user.password"></mdc-text-field>
+      <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Password is required</p>
+    </form>
+  </mdc-dialog-body>
+  <mdc-dialog-footer>
+    <button type="button" mdc-dialog-button cancel="true">Cancel</button>
+    <button type="submit" form="userForm" mdc-dialog-button [disabled]="!userForm.valid || submitInProgress">Save</button>
+  </mdc-dialog-footer>
+  <mdc-linear-progress *ngIf="submitInProgress" [indeterminate]="true"></mdc-linear-progress>
+</mdc-dialog>

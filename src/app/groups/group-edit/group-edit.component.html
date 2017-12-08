@@ -6,8 +6,7 @@
   </mdc-dialog-header>
   <mdc-dialog-body>
     <form id="groupForm" [formGroup]="groupForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="column">
-      <mdc-text-field fxFlex placeholder="Name" label="Name" #name id="name" [required]="true" formControlName="name" type="name"
-        [(ngModel)]="group.name"></mdc-text-field>
+      <mdc-text-field fxFlex placeholder="Name" label="Name" required="true" formControlName="name" type="text" [(ngModel)]="group.name"></mdc-text-field>
       <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Name is required</p>
     </form>
   </mdc-dialog-body>

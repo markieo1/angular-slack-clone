@@ -1,0 +1,4 @@
+<div *ngIf="user">
+  <h2>{{ user.nickname}}</h2>
+</div>
+<app-user-delete [id]="user?.id"></app-user-delete>

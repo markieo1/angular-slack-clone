@@ -1,13 +1,15 @@
-<div fxLayout="column">
-  <mdc-list twoLine="true" border="true">
-      <mdc-list-item *ngFor="let number of [0,1,2,3,4]">
-          <mdc-list-item-text>
-            Single-line item
-            <mdc-list-item-secondary>Secondary text</mdc-list-item-secondary>
-          </mdc-list-item-text>
-        </mdc-list-item>
-
+<div fxLayout="column" class="list-container" fxFill>
+  <mdc-list *ngIf="users && users.length > 0" twoLine="true" border="true" style="height: 100%">
+    <mdc-list-item *ngFor="let user of users" [routerLink]="user.id" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+      <mdc-list-item-text>
+        {{ user.nickname}}
+        <mdc-list-item-secondary>
+          {{ user.email }}
+        </mdc-list-item-secondary>
+      </mdc-list-item-text>
+    </mdc-list-item>
   </mdc-list>
-
-  TODO: Load users
+  <button type="button" (click)="createNewUser()" mdc-fab class="add-user-fab">
+    <mdc-icon>add</mdc-icon>
+  </button>
 </div>
