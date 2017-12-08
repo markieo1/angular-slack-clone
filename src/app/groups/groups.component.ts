@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseComponent } from '../shared/basecomponent.class';
 import { Router, NavigationEnd } from '@angular/router';
 import { ObservableMedia } from '@angular/flex-layout';
+import { ToolbarService } from '../core/toolbar/toolbar.service';
 
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html'
 })
-export class GroupsComponent extends BaseComponent implements OnInit {
+export class GroupsComponent extends BaseComponent implements OnInit, OnDestroy {
   /**
    * Determines if we are currently displaying any detail
    */
   public isDisplayingDetail: boolean;
 
-  constructor(private router: Router, private media: ObservableMedia) {
+  constructor(private router: Router, private media: ObservableMedia, private toolbarService: ToolbarService) {
     super();
 
     const segments = this.router.url.split('/').filter(i => i);
     this.isDisplayingDetail = segments.length > 1;
+    this.updateToolbar();
   }
 
   ngOnInit(): void {
@@ -28,16 +30,22 @@ export class GroupsComponent extends BaseComponent implements OnInit {
       .map((segments) => segments.filter(i => i))
       .subscribe((segments) => {
         this.isDisplayingDetail = segments.length > 1;
+        this.updateToolbar();
       });
   }
 
-  public canShowList(): boolean {
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
 
-    if (this.media.isActive('gt-sm')) {
-      // Is in desktop
-      return true;
-    } else {
-      return !this.isDisplayingDetail;
+    this.toolbarService.reset();
+  }
+
+  /**
+   * Updates the toolbar
+   */
+  private updateToolbar() {
+    if (!this.isDisplayingDetail) {
+      this.toolbarService.setTitle('Groups');
     }
   }
 }

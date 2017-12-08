@@ -4,13 +4,14 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   private user: User;
   private jwtHelper: JwtHelper;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private router: Router) {
     this.jwtHelper = new JwtHelper();
   }
 
@@ -80,6 +81,7 @@ export class AuthService {
     // clear token remove user from local storage to log user out
     this.user = null;
     localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
   /**

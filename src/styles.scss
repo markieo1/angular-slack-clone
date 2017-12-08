@@ -1,5 +1,7 @@
 $mdc-theme-primary: #F44336;
 $mdc-theme-secondary: #009688;
 $mdc-theme-background: #fff;
-
 @import "~@angular-mdc/theme";
+.mdc-padding {
+  padding: 7px !important;
+}

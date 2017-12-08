@@ -47,7 +47,7 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
   ngOnDestroy() {
     super.ngOnDestroy();
 
-    this.toolbarService.resetItems();
+    this.toolbarService.reset();
   }
 
   /**
@@ -56,6 +56,8 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
   private loadGroup() {
     this.subscription = this.groupService.getGroup(this.id).subscribe((group) => {
       this.group = group;
+
+      this.toolbarService.setTitle(this.group.name);
     });
   }
 

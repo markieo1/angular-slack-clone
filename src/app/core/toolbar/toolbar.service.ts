@@ -13,11 +13,14 @@ export class ToolbarService {
    */
   private toolbarItems: Array<ToolbarItem>;
 
+  private onTitleChanged: EventEmitter<string>;
+
   /**
    * Constructor
    */
   constructor() {
     this.onToolbarItemsChanged = new EventEmitter();
+    this.onTitleChanged = new EventEmitter();
     this.toolbarItems = [];
   }
 
@@ -42,5 +45,35 @@ export class ToolbarService {
    */
   public resetItems() {
     this.setToolbarItems([]);
+  }
+
+  /**
+   * Resets the toolbar title
+   */
+  public resetTitle() {
+    this.setTitle('');
+  }
+
+  /**
+   * Resets the changed toolbar
+   */
+  public reset() {
+    this.resetItems();
+    this.resetTitle();
+  }
+
+  /**
+   * Gets the title observable
+   */
+  public getTitleChanged(): EventEmitter<string> {
+    return this.onTitleChanged;
+  }
+
+  /**
+   * Sets the title in the toolbar
+   * @param title The title to display at the toolbar
+   */
+  public setTitle(title: string) {
+    this.onTitleChanged.emit(title);
   }
 }

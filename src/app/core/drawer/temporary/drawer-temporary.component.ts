@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MdcTemporaryDrawer } from '@angular-mdc/web';
 import { DrawerService } from '../drawer.service';
 import { BaseComponent } from '../../../shared/basecomponent.class';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-drawer-temporary',
@@ -11,7 +12,7 @@ export class DrawerTemporaryComponent extends BaseComponent implements OnInit {
   @ViewChild('drawer')
   drawer: MdcTemporaryDrawer;
 
-  constructor(private drawerService: DrawerService) {
+  constructor(private drawerService: DrawerService, private authService: AuthService) {
     super();
   }
 
@@ -26,5 +27,12 @@ export class DrawerTemporaryComponent extends BaseComponent implements OnInit {
    */
   toggleDrawer() {
     this.drawer.open();
+  }
+
+  /**
+   * Logs the user out
+   */
+  public logout(): void {
+    this.authService.logout();
   }
 }

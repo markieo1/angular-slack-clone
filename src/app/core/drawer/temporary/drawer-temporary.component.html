@@ -1,7 +1,12 @@
 <mdc-temporary-drawer #drawer fxShow fxHide.gt-sm="true">
   <mdc-temporary-drawer-header class="mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
     <mdc-temporary-drawer-header-content>
-      Slack
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <span>Slack</span>
+        <a title="Sign Out" mdc-ripple (click)="logout()">
+          <mdc-icon>lock</mdc-icon>
+        </a>
+      </div>
     </mdc-temporary-drawer-header-content>
   </mdc-temporary-drawer-header>
   <mdc-temporary-drawer-content>
