@@ -5,10 +5,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '../auth/auth.module';
 import { ChatsListComponent } from './chats-list/chats-list.component';
+import { ChatSendComponent } from 'app/chats/chat-send/chat-send.component';
 
 @NgModule({
   declarations: [
-    ChatsListComponent
+    ChatsListComponent,
+    ChatSendComponent
   ],
   imports: [
     CommonModule,
@@ -17,6 +19,9 @@ import { ChatsListComponent } from './chats-list/chats-list.component';
     ReactiveFormsModule,
     AuthModule
   ],
-  exports: [ChatsListComponent]
+  exports: [
+    ChatsListComponent,
+    ChatSendComponent
+  ]
 })
 export class ChatsModule { }
