@@ -95,6 +95,11 @@ export class AuthService {
    * Gets the currently logged in user, returns null if not logged in
    */
   public getUser(): User {
+    if (!this.user && this.isLoggedIn()) {
+      // Logged in but not loaded,
+      this.parseToken();
+    }
+
     return this.user;
   }
 

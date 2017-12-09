@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '../auth/auth.module';
 import { ChatsListComponent } from './chats-list/chats-list.component';
-import { ChatSendComponent } from 'app/chats/chat-send/chat-send.component';
+import { ChatSendComponent } from './chat-send/chat-send.component';
+import { ChatService } from './chat.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { ChatSendComponent } from 'app/chats/chat-send/chat-send.component';
   exports: [
     ChatsListComponent,
     ChatSendComponent
+  ],
+  providers: [
+    ChatService
   ]
 })
 export class ChatsModule { }

@@ -35,4 +35,10 @@ export class ChatMessage extends BaseModel {
    * The group id for this message
    */
   groupId: string;
+
+  constructor(id?: string) {
+    super(id);
+    this.sentAt = new Date();
+    this.lastEdit = new Date();
+  }
 }
