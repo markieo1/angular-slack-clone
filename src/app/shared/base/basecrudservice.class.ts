@@ -7,11 +7,6 @@ import { BaseModel } from 'app/shared/base/basemodel.class';
 
 export abstract class BaseCrudService<T extends BaseModel> {
   /**
-   * The resource for this service
-   */
-  protected resource: string;
-
-  /**
    * The http lib to use for authenticated calls
    */
   protected authHttp: AuthHttp;
@@ -28,10 +23,8 @@ export abstract class BaseCrudService<T extends BaseModel> {
    */
   private items: Array<T>;
 
-  constructor(resource: string, authHttp: AuthHttp) {
+  constructor(authHttp: AuthHttp) {
     this.authHttp = authHttp;
-
-    this.resource = resource;
 
     this.onChange = new EventEmitter();
   }
@@ -52,7 +45,7 @@ export abstract class BaseCrudService<T extends BaseModel> {
     } else if (this.items$) {
       return this.items$;
     } else {
-      this.items$ = this.authHttp.get(`${environment.apiUrl}/${this.resource}`)
+      this.items$ = this.authHttp.get(`${environment.apiUrl}/${this.getResourceUrl()}`)
         .map(r => r.json())
         .map(response => {
           // when the cached data is available we don't need the `Observable` reference anymore
@@ -87,7 +80,7 @@ export abstract class BaseCrudService<T extends BaseModel> {
    * @param id The id to delete
    */
   public delete(id: string): Observable<boolean> {
-    return this.authHttp.delete(`${environment.apiUrl}/${this.resource}/${id}`)
+    return this.authHttp.delete(`${environment.apiUrl}/${this.getResourceUrl()}/${id}`)
       .map(response => response.status === 204)
       .finally(() => this.resetCache());
   }
@@ -97,7 +90,7 @@ export abstract class BaseCrudService<T extends BaseModel> {
    * @param item The item to save
    */
   public create(item: T): Observable<T> {
-    return this.authHttp.post(`${environment.apiUrl}/${this.resource}`, item)
+    return this.authHttp.post(`${environment.apiUrl}/${this.getResourceUrl()}`, item)
       .map(response => response.json())
       .finally(() => this.resetCache());
   }
@@ -108,7 +101,7 @@ export abstract class BaseCrudService<T extends BaseModel> {
    * @param item The updated props
    */
   public update(id: string, item: T): Observable<T> {
-    return this.authHttp.put(`${environment.apiUrl}/${this.resource}/${id}`, item)
+    return this.authHttp.put(`${environment.apiUrl}/${this.getResourceUrl()}/${id}`, item)
       .map(response => response.json());
   }
 
@@ -121,4 +114,9 @@ export abstract class BaseCrudService<T extends BaseModel> {
 
     this.onChange.emit();
   }
+
+  /**
+   * Gets the resource URl
+   */
+  protected abstract getResourceUrl(): string;
 }

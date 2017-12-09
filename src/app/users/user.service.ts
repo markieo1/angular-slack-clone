@@ -9,13 +9,18 @@ import { BaseCrudService } from '../shared/base/basecrudservice.class';
 
 @Injectable()
 export class UserService extends BaseCrudService<User> {
+
   constructor(authHttp: AuthHttp) {
-    super('users', authHttp);
+    super(authHttp);
   }
 
   public create(item: User): Observable<User> {
-    return this.authHttp.post(`${environment.apiUrl}/${this.resource}/register`, item)
+    return this.authHttp.post(`${environment.apiUrl}/${this.getResourceUrl()}/register`, item)
       .map(r => r.json())
       .finally(() => this.resetCache());
+  }
+
+  protected getResourceUrl(): string {
+    return 'users';
   }
 }

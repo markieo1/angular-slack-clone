@@ -9,7 +9,12 @@ import { BaseCrudService } from '../shared/base/basecrudservice.class';
 
 @Injectable()
 export class GroupService extends BaseCrudService<Group> {
+
   constructor(authHttp: AuthHttp) {
-    super('groups', authHttp);
+    super(authHttp);
+  }
+
+  protected getResourceUrl(): string {
+    return 'groups';
   }
 }
