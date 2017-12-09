@@ -12,6 +12,7 @@ import { GroupEditComponent } from './group-edit/group-edit.component';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupsComponent } from './groups.component';
 import { GroupDeleteComponent } from './group-delete/group-delete.component';
+import { ChatsModule } from '../chats/chats.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { GroupDeleteComponent } from './group-delete/group-delete.component';
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
-    GroupsRoutingModule
+    GroupsRoutingModule,
+    ChatsModule
   ],
   providers: [
     GroupService

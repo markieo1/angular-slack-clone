@@ -1,4 +1,16 @@
-<div *ngIf="group">
-  <h2>{{ group.name}}</h2>
-</div>
+<mdc-card fxFill>
+  <mdc-card-primary>
+    <mdc-card-title>{{ group?.name }}</mdc-card-title>
+  </mdc-card-primary>
+  <mdc-card-media class="chat-content">
+    <mdc-card fxFill>
+      <mdc-card-primary>
+        <mdc-card-title [large]="false">Messages</mdc-card-title>
+      </mdc-card-primary>
+      <mdc-card-media class="chat-content">
+        <app-chats-list></app-chats-list>
+      </mdc-card-media>
+    </mdc-card>
+  </mdc-card-media>
+</mdc-card>
 <app-group-delete [id]="group?.id"></app-group-delete>

@@ -9,7 +9,8 @@ import { GroupDeleteComponent } from 'app/groups/group-delete/group-delete.compo
 
 @Component({
   selector: 'app-group-detail',
-  templateUrl: './group-detail.component.html'
+  templateUrl: './group-detail.component.html',
+  styleUrls: ['group-detail.component.scss']
 })
 export class GroupDetailComponent extends BaseComponent implements OnInit, OnDestroy {
 
