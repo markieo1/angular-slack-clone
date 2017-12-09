@@ -29,11 +29,42 @@ import {
   MdcToolbarModule,
   MdcTypographyModule,
 } from '@angular-mdc/web';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LayoutRoutingModule } from './layout-routing.module';
 
 @NgModule({
+  declarations: [
+    DashboardComponent
+  ],
   imports: [
     CommonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    LayoutRoutingModule,
+    MdcButtonModule,
+    MdcCardModule,
+    MdcCheckboxModule,
+    MdcDialogModule,
+    MdcDrawerModule,
+    MdcElevationModule,
+    MdcFabModule,
+    MdcFormFieldModule,
+    MdcIconModule,
+    MdcIconToggleModule,
+    MdcLinearProgressModule,
+    MdcListModule,
+    MdcMaterialIconModule,
+    MdcMenuModule,
+    MdcRadioModule,
+    MdcRippleModule,
+    MdcSelectModule,
+    MdcSliderModule,
+    MdcSnackbarModule,
+    MdcSwitchModule,
+    MdcTabModule,
+    MdcTextFieldModule,
+    MdcThemeModule,
+    MdcToolbarModule,
+    MdcTypographyModule,
   ],
   exports: [
     FlexLayoutModule,

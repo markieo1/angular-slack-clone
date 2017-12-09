@@ -7,7 +7,6 @@ import { DrawerService } from './drawer/drawer.service';
 import { DrawerListComponent } from './drawer/list/drawer-list.component';
 import { DrawerPermanentComponent } from './drawer/permament/drawer-permanent.component';
 import { DrawerTemporaryComponent } from './drawer/temporary/drawer-temporary.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { ToolbarService } from './toolbar/toolbar.service';
 
@@ -16,8 +15,7 @@ import { ToolbarService } from './toolbar/toolbar.service';
     DrawerListComponent,
     DrawerPermanentComponent,
     DrawerTemporaryComponent,
-    ToolbarComponent,
-    NotFoundComponent
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
@@ -28,8 +26,7 @@ import { ToolbarService } from './toolbar/toolbar.service';
     DrawerListComponent,
     DrawerPermanentComponent,
     DrawerTemporaryComponent,
-    ToolbarComponent,
-    NotFoundComponent
+    ToolbarComponent
   ],
   providers: [DrawerService, ToolbarService]
 })
