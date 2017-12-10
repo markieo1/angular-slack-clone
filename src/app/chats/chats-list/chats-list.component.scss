@@ -14,6 +14,10 @@
     .message-end-detail {
       height: auto;
       width: auto;
+      button {
+        min-width: unset;
+        padding: unset;
+      }
     }
     .message-text {
       text-overflow: ellipsis;
