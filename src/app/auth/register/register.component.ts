@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../auth/auth.service';
 import { User } from '../../shared/user.model';
 import { Router } from '@angular/router';
+import { IAuthService } from '../../shared/auth/iauth-service.interface';
+import { AUTH_SERVICE } from '../../shared/auth/auth-service.token';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
    */
   public user: User;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(@Inject(AUTH_SERVICE) private authService: IAuthService, private router: Router) {
     super();
     this.user = new User();
   }

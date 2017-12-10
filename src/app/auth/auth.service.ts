@@ -5,9 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { Router } from '@angular/router';
+import { IAuthService } from '../shared/auth/iauth-service.interface';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements IAuthService {
   private user: User;
   private jwtHelper: JwtHelper;
 

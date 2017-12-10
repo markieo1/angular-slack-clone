@@ -11,6 +11,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './auth-guard.service';
 import { LoginGuard } from './login-guard.service';
 import { RegisterComponent } from './register/register.component';
+import { AUTH_SERVICE } from '../shared/auth/auth-service.token';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -35,9 +36,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       useFactory: authHttpServiceFactory,
       deps: [Http, RequestOptions]
     },
-    AuthService,
+    {
+      provide: AUTH_SERVICE,
+      useClass: AuthService
+    },
     AuthGuard,
-    LoginGuard
+    LoginGuard,
   ]
 })
 export class AuthModule { }

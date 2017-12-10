@@ -1,10 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
 import { DrawerService } from '../drawer/drawer.service';
 import { ToolbarService } from './toolbar.service';
 import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { ToolbarItem } from './toolbar-item.class';
-import { AuthService } from '../../auth/auth.service';
+import { AUTH_SERVICE } from '../../shared/auth/auth-service.token';
+import { IAuthService } from '../../shared/auth/iauth-service.interface';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,7 +16,7 @@ export class ToolbarComponent extends BaseComponent implements OnInit {
   public title: string;
 
   constructor(public media: ObservableMedia, private drawerService: DrawerService, private toolbarService: ToolbarService, private cdr: ChangeDetectorRef,
-    private authService: AuthService) {
+    @Inject(AUTH_SERVICE) private authService: IAuthService) {
     super();
     this.toolbarItems = [];
   }

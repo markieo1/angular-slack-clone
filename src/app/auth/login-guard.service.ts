@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AUTH_SERVICE } from '../shared/auth/auth-service.token';
+import { IAuthService } from '../shared/auth/iauth-service.interface';
 
 @Injectable()
 export class LoginGuard implements CanActivate {
 
-  constructor(private authService: AuthService) { }
+  constructor(@Inject(AUTH_SERVICE) private authService: IAuthService) { }
 
   canActivate() {
     return !this.authService.isLoggedIn();

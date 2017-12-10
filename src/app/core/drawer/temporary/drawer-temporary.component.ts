@@ -1,8 +1,9 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { MdcTemporaryDrawer } from '@angular-mdc/web';
 import { DrawerService } from '../drawer.service';
 import { BaseComponent } from '../../../shared/base/basecomponent.class';
-import { AuthService } from '../../../auth/auth.service';
+import { AUTH_SERVICE } from '../../../shared/auth/auth-service.token';
+import { IAuthService } from '../../../shared/auth/iauth-service.interface';
 
 @Component({
   selector: 'app-drawer-temporary',
@@ -12,7 +13,7 @@ export class DrawerTemporaryComponent extends BaseComponent implements OnInit {
   @ViewChild('drawer')
   drawer: MdcTemporaryDrawer;
 
-  constructor(private drawerService: DrawerService, private authService: AuthService) {
+  constructor(private drawerService: DrawerService, @Inject(AUTH_SERVICE) private authService: IAuthService) {
     super();
   }
 

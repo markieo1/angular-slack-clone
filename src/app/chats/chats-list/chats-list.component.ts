@@ -1,11 +1,12 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, Inject } from '@angular/core';
 import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { ChatMessage } from '../chat.model';
 import { ChatService } from '../chat.service';
 import { MdcList } from '@angular-mdc/web';
-import { AuthService } from '../../auth/auth.service';
 import { ChatDeleteComponent } from '../chat-delete/chat-delete.component';
 import { ChatEditComponent } from '../chat-edit/chat-edit.component';
+import { AUTH_SERVICE } from '../../shared/auth/auth-service.token';
+import { IAuthService } from '../../shared/auth/iauth-service.interface';
 
 @Component({
   selector: 'app-chats-list',
@@ -43,7 +44,7 @@ export class ChatsListComponent extends BaseComponent {
 
   private _groupId: string;
 
-  constructor(private chatService: ChatService, private authService: AuthService) {
+  constructor(private chatService: ChatService, @Inject(AUTH_SERVICE) private authService: IAuthService) {
     super();
     this.messages = [];
     this.currentUserId = this.authService.getUser().id;
