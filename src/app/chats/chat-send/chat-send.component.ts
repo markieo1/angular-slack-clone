@@ -24,7 +24,7 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
   /**
    * The message form
    */
-  public messageForm: FormGroup;
+  public sendMessageForm: FormGroup;
 
   constructor(private chatService: ChatService) {
     super();
@@ -54,8 +54,8 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
   * Initializes the form
   */
   private initForm() {
-    this.messageForm = new FormGroup({
-      message: new FormControl('', Validators.required)
+    this.sendMessageForm = new FormGroup({
+      message: new FormControl('')
     });
   }
 }

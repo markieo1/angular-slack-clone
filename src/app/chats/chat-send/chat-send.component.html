@@ -1,8 +1,8 @@
 <div fxLayout="row" fxLayoutAlign=" end">
-  <form id="messageForm" fxFlex [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <form id="sendMessageForm" fxFlex [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
     <mdc-text-field fxFlex label="Message" formControlName="message" type="text" dense="true" [(ngModel)]="message"></mdc-text-field>
   </form>
-  <button type="submit" form="messageForm" fxFlex="nogrow" mdc-fab [mini]="true">
+  <button type="submit" form="sendMessageForm" fxFlex="nogrow" mdc-fab [mini]="true">
     <mdc-icon>send</mdc-icon>
   </button>
 </div>
