@@ -73,6 +73,13 @@ export class ChatsListComponent extends BaseComponent {
   }
 
   /**
+   * Refreshes the messages
+   */
+  public refreshMessages() {
+    this.loadMessages();
+  }
+
+  /**
    * Loads the messages
    */
   private loadMessages() {

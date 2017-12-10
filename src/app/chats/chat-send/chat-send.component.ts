@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { ChatService } from '../chat.service';
 import { ChatMessage } from 'app/chats/chat.model';
@@ -26,8 +26,12 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
    */
   public sendMessageForm: FormGroup;
 
+  @Output()
+  public onMessageSent: EventEmitter<void>;
+
   constructor(private chatService: ChatService) {
     super();
+    this.onMessageSent = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -47,6 +51,7 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
 
     this.chatService.create(this.groupId, chatMessage).subscribe(() => {
       this.message = '';
+      this.onMessageSent.emit();
     });
   }
 

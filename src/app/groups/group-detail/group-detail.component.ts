@@ -5,7 +5,8 @@ import { Group } from '../group.model';
 import { GroupService } from '../group.service';
 import { ToolbarService } from '../../core/toolbar/toolbar.service';
 import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
-import { GroupDeleteComponent } from 'app/groups/group-delete/group-delete.component';
+import { GroupDeleteComponent } from '../group-delete/group-delete.component';
+import { ChatsListComponent } from '../../chats/chats-list/chats-list.component';
 
 @Component({
   selector: 'app-group-detail',
@@ -19,6 +20,9 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
    */
   @ViewChild(GroupDeleteComponent)
   public deleteDialog: GroupDeleteComponent;
+
+  @ViewChild(ChatsListComponent)
+  public chatListComponent: ChatsListComponent;
 
   public group: Group;
   private id: string;
@@ -57,6 +61,13 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
     super.ngOnDestroy();
 
     this.toolbarService.reset();
+  }
+
+  /**
+   * Refreshes the messages
+   */
+  public refreshList() {
+    this.chatListComponent.refreshMessages();
   }
 
   /**
