@@ -31,10 +31,14 @@ import {
 } from '@angular-mdc/web';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutRoutingModule } from './layout-routing.module';
+import { ScrollDownDirective } from './scroll-down/scroll-down.directive';
+import { ScrollableListDirective } from './scrollable-list/scrollable-list.directive';
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    ScrollDownDirective,
+    ScrollableListDirective
   ],
   imports: [
     CommonModule,
@@ -93,6 +97,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
     MdcThemeModule,
     MdcToolbarModule,
     MdcTypographyModule,
+    ScrollDownDirective,
+    ScrollableListDirective
   ]
 })
 export class LayoutModule { }

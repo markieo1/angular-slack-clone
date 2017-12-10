@@ -1,4 +1,4 @@
-<mdc-list twoLine="true" disableRipple="true" class="chat-list">
+<mdc-list twoLine="true" disableRipple="true" class="chat-list" [appScrollDown]="messages">
   <mdc-list-item *ngFor="let chatMessage of messages">
     <div mdc-list-item-start class="message-start-detail">
       <small>{{ chatMessage.sentAt | date:'dd/MM/yyyy' }}

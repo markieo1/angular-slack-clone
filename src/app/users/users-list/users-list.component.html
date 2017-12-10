@@ -1,5 +1,5 @@
 <div fxLayout="column" class="list-container" fxFill>
-  <mdc-list *ngIf="users && users.length > 0" twoLine="true" border="true" style="height: 100%">
+  <mdc-list *ngIf="users && users.length > 0" twoLine="true" border="true" appScrollableList>
     <mdc-list-item *ngFor="let user of users" [routerLink]="user.id" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
       <mdc-list-item-text>
         {{ user.nickname}}
