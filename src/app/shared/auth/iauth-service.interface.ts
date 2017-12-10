@@ -1,6 +1,9 @@
 import { User } from '../user.model';
 import { Observable } from 'rxjs/Observable';
 
+/**
+ * Interface defining each auth service
+ */
 export interface IAuthService {
   /**
    * Logs the user in
@@ -13,7 +16,6 @@ export interface IAuthService {
    * @param user The user to register
    */
   register(user: User): Observable<boolean>;
-
 
   /**
    * Logs the user out
