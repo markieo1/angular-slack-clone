@@ -10,10 +10,16 @@
     text-overflow: ellipsis;
     height: auto;
     margin-top: 10px;
-    .message-start-detail,
-    .message-end-detail {
+    .message-detail {
       height: auto;
       width: auto;
+    }
+    .message-start-detail {
+      @extend .message-detail;
+      margin-right: 10px;
+    }
+    .message-end-detail {
+      @extend .message-detail;
       button {
         min-width: unset;
         padding: unset;
