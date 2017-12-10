@@ -14,11 +14,7 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
    * The group id to send the chats to
    */
   @Input()
-  public set groupId(groupId) {
-    if (groupId) {
-      this.chatService.groupId = groupId;
-    }
-  }
+  public groupId: string;
 
   /**
    * The message currently being typed by the user
@@ -49,7 +45,7 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
     const chatMessage = new ChatMessage();
     chatMessage.message = this.message;
 
-    this.chatService.create(chatMessage).subscribe(() => {
+    this.chatService.create(this.groupId, chatMessage).subscribe(() => {
       this.message = '';
     });
   }

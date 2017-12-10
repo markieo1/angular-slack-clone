@@ -6,7 +6,8 @@ import { ToolbarService } from '../core/toolbar/toolbar.service';
 
 @Component({
   selector: 'app-groups',
-  templateUrl: './groups.component.html'
+  templateUrl: './groups.component.html',
+  styleUrls: ['groups.component.scss']
 })
 export class GroupsComponent extends BaseComponent implements OnInit, OnDestroy {
   /**

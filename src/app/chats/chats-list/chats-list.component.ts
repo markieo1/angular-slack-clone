@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { BaseComponent } from '../../shared/base/basecomponent.class';
 import { ChatMessage } from '../chat.model';
 import { ChatService } from '../chat.service';
@@ -10,7 +10,7 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: 'chats-list.component.html',
   styleUrls: ['chats-list.component.scss']
 })
-export class ChatsListComponent extends BaseComponent implements OnInit {
+export class ChatsListComponent extends BaseComponent {
   @ViewChild(MdcList)
   public mdcList: MdcList;
 
@@ -22,7 +22,6 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
     this._groupId = groupId;
 
     if (groupId) {
-      this.chatService.groupId = groupId;
       this.loadMessages();
     }
   }
@@ -38,15 +37,11 @@ export class ChatsListComponent extends BaseComponent implements OnInit {
     this.currentUserId = this.authService.getUser().id;
   }
 
-  ngOnInit(): void {
-    this.chatService.getOnChangeEvent().subscribe(() => this.loadMessages());
-  }
-
   /**
    * Loads the messages
    */
   private loadMessages() {
-    this.chatService.getAll().subscribe((messages) => {
+    this.chatService.getAll(this._groupId).subscribe((messages) => {
       this.messages = messages;
 
       setTimeout(() => {

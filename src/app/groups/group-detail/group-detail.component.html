@@ -9,7 +9,7 @@
       </mdc-card-primary>
       <mdc-card-media class="chat-content">
         <app-chats-list [groupId]="group?.id"></app-chats-list>
-        <app-chat-send></app-chat-send>
+        <app-chat-send [groupId]="group?.id"></app-chat-send>
       </mdc-card-media>
     </mdc-card>
   </mdc-card-media>

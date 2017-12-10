@@ -1,13 +1,19 @@
-<mdc-list twoLine="true" dense="true" class="chat-list">
+<mdc-list twoLine="true" disableRipple="true" class="chat-list">
   <mdc-list-item *ngFor="let chatMessage of messages">
-    <div mdc-list-item-end *ngIf="chatMessage.from.id === currentUserId">
-      <ng-container *ngTemplateOutlet="textBlock"></ng-container>
+    <div mdc-list-item-start class="message-start-detail">
+      <small>{{ chatMessage.sentAt | date:'dd/MM/yyyy' }}
+        <br>{{ chatMessage.sentAt | date:'hh:mm' }}</small>
     </div>
-    <div mdc-list-item-start *ngIf="chatMessage.from.id !== currentUserId">
-      <ng-container *ngTemplateOutlet="textBlock"></ng-container>
+    <mdc-list-item-text class="message-wrapper">
+      <span *ngIf="chatMessage.from.id === currentUserId" class="message-name">Me</span>
+      <span *ngIf="chatMessage.from.id !== currentUserId" class="message-name">{{ chatMessage.from.nickname }}</span>
+
+      <mdc-list-item-secondary class="message-text">{{ chatMessage.message }}</mdc-list-item-secondary>
+    </mdc-list-item-text>
+
+    <div mdc-list-item-end *ngIf="chatMessage.from.id === currentUserId" class="message-end-detail">
+      <mdc-icon>edit</mdc-icon>
+      <mdc-icon>delete_forever</mdc-icon>
     </div>
-    <ng-template #textBlock>
-        {{ chatMessage.message }}
-    </ng-template>
   </mdc-list-item>
 </mdc-list>

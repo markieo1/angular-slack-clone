@@ -2,8 +2,35 @@
   flex-direction: column-reverse;
   display: flex;
   padding-top: 0;
-}
-
-.mdc-list-item__end-detail {
-   width: unset;
+  min-width: 0;
+  mdc-list-item {
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
+    margin-top: 10px;
+    .message-name {
+      white-space: normal;
+    }
+    .message-detail {
+      width: auto;
+    }
+    .message-start-detail {
+      @extend .message-detail;
+      height: auto;
+    }
+    .message-end-detail {
+      @extend .message-detail;
+    }
+    .message-text {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: initial;
+    }
+    .message-wrapper {
+      overflow-x: hidden;
+    }
+  }
 }
