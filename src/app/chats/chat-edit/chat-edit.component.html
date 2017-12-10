@@ -12,7 +12,7 @@
   </mdc-dialog-body>
   <mdc-dialog-footer>
     <button type="button" mdc-dialog-button cancel="true">Cancel</button>
-    <button type="submit" form="messageForm" mdc-dialog-button [disabled]="!messageForm.valid || submitInProgress">Save</button>
+    <button type="submit" form="messageForm" mdc-dialog-button [disabled]="!messageForm.valid || editInProgress">Save</button>
   </mdc-dialog-footer>
   <mdc-linear-progress *ngIf="editInProgress" [indeterminate]="true"></mdc-linear-progress>
 </mdc-dialog>
