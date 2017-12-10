@@ -1,4 +1,4 @@
-import { Directive, Input, OnChanges, SimpleChanges, ElementRef, AfterViewChecked } from '@angular/core';
+import { Directive, Input, OnChanges, SimpleChanges, ElementRef, AfterViewChecked, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appScrollDown]'
@@ -16,7 +16,7 @@ export class ScrollDownDirective implements OnChanges, AfterViewChecked {
    */
   private shouldScroll = false;
 
-  constructor(private hostElement: ElementRef) { }
+  constructor(private hostElement: ElementRef, private renderer: Renderer2) { }
 
   ngAfterViewChecked(): void {
     this.scrollToBottom();
@@ -31,7 +31,7 @@ export class ScrollDownDirective implements OnChanges, AfterViewChecked {
    */
   private scrollToBottom() {
     if (this.shouldScroll) {
-      this.hostElement.nativeElement.parentElement.scrollTop = this.hostElement.nativeElement.parentElement.scrollHeight;
+      this.renderer.setProperty(this.hostElement.nativeElement.parentElement, 'scrollTop', this.hostElement.nativeElement.parentElement.scrollHeight);
       this.shouldScroll = false;
     }
   }
