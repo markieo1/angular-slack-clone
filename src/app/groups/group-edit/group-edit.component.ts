@@ -116,6 +116,10 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
   private loadGroup() {
     this.groupService.get(this.id).subscribe((group) => {
       this.group = group;
+
+      this.groupForm.setValue({
+        name: this.group.name
+      });
     });
   }
 

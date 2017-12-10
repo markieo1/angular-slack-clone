@@ -121,6 +121,12 @@ export class UserEditComponent extends BaseComponent implements OnInit, AfterVie
   private loadUser() {
     this.userService.get(this.id).subscribe((user) => {
       this.user = user;
+
+      this.userForm.setValue({
+        nickname: this.user.nickname,
+        email: this.user.email,
+        password: ''
+      });
     });
   }
 
