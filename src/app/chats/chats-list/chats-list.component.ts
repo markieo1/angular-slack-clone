@@ -4,6 +4,8 @@ import { ChatMessage } from '../chat.model';
 import { ChatService } from '../chat.service';
 import { MdcList } from '@angular-mdc/web';
 import { AuthService } from '../../auth/auth.service';
+import { ChatDeleteComponent } from '../chat-delete/chat-delete.component';
+import { ChatEditComponent } from '../chat-edit/chat-edit.component';
 
 @Component({
   selector: 'app-chats-list',
@@ -13,6 +15,12 @@ import { AuthService } from '../../auth/auth.service';
 export class ChatsListComponent extends BaseComponent {
   @ViewChild(MdcList)
   public mdcList: MdcList;
+
+  @ViewChild(ChatDeleteComponent)
+  public chatDeleteComponent: ChatDeleteComponent;
+
+  @ViewChild(ChatEditComponent)
+  public chatEditComponent: ChatEditComponent;
 
   /**
    * The group id to display the chats for
@@ -26,6 +34,10 @@ export class ChatsListComponent extends BaseComponent {
     }
   }
 
+  public get groupId() {
+    return this._groupId;
+  }
+
   public messages: ChatMessage[];
   public currentUserId: string;
 
@@ -35,6 +47,29 @@ export class ChatsListComponent extends BaseComponent {
     super();
     this.messages = [];
     this.currentUserId = this.authService.getUser().id;
+  }
+
+  /**
+   * Shows the edit dialog
+   * @param chatMessage The message to edit
+   */
+  public editMessage(chatMessage: ChatMessage) {
+    this.chatEditComponent.showDialog(chatMessage);
+  }
+
+  /**
+   * Shows the delete dialog
+   * @param chatMessage The message to delete
+   */
+  public deleteMessage(chatMessage: ChatMessage) {
+    this.chatDeleteComponent.showDialog(chatMessage.id);
+  }
+
+  /**
+   * Called when a message is edited or deleted
+   */
+  public onMessageChanged() {
+    this.loadMessages();
   }
 
   /**

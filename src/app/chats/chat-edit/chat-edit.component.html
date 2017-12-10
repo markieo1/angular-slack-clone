@@ -1,0 +1,18 @@
+<mdc-dialog>
+  <mdc-dialog-header>
+    <mdc-dialog-header-title>
+      Edit message
+    </mdc-dialog-header-title>
+  </mdc-dialog-header>
+  <mdc-dialog-body>
+    <form id="messageForm" [formGroup]="messageForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="column">
+      <mdc-text-field fxFlex placeholder="Message" label="Message" required="true" formControlName="message" type="text" [(ngModel)]="chatMessage.message"></mdc-text-field>
+      <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Message is required</p>
+    </form>
+  </mdc-dialog-body>
+  <mdc-dialog-footer>
+    <button type="button" mdc-dialog-button cancel="true">Cancel</button>
+    <button type="submit" form="messageForm" mdc-dialog-button [disabled]="!messageForm.valid || submitInProgress">Save</button>
+  </mdc-dialog-footer>
+  <mdc-linear-progress *ngIf="editInProgress" [indeterminate]="true"></mdc-linear-progress>
+</mdc-dialog>

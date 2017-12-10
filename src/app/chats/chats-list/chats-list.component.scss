@@ -10,18 +10,10 @@
     text-overflow: ellipsis;
     height: auto;
     margin-top: 10px;
-    .message-name {
-      white-space: normal;
-    }
-    .message-detail {
-      width: auto;
-    }
-    .message-start-detail {
-      @extend .message-detail;
-      height: auto;
-    }
+    .message-start-detail,
     .message-end-detail {
-      @extend .message-detail;
+      height: auto;
+      width: auto;
     }
     .message-text {
       text-overflow: ellipsis;

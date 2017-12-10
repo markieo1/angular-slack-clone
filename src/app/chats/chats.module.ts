@@ -7,11 +7,15 @@ import { AuthModule } from '../auth/auth.module';
 import { ChatsListComponent } from './chats-list/chats-list.component';
 import { ChatSendComponent } from './chat-send/chat-send.component';
 import { ChatService } from './chat.service';
+import { ChatDeleteComponent } from './chat-delete/chat-delete.component';
+import { ChatEditComponent } from './chat-edit/chat-edit.component';
 
 @NgModule({
   declarations: [
     ChatsListComponent,
-    ChatSendComponent
+    ChatSendComponent,
+    ChatDeleteComponent,
+    ChatEditComponent
   ],
   imports: [
     CommonModule,

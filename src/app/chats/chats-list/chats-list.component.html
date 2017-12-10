@@ -12,8 +12,14 @@
     </mdc-list-item-text>
 
     <div mdc-list-item-end *ngIf="chatMessage.from.id === currentUserId" class="message-end-detail">
-      <mdc-icon>edit</mdc-icon>
-      <mdc-icon>delete_forever</mdc-icon>
+      <button type="button" mdc-button (click)="editMessage(chatMessage)">
+        <mdc-icon>edit</mdc-icon>
+      </button>
+      <button type="button" mdc-button (click)="deleteMessage(chatMessage)">
+        <mdc-icon>delete_forever</mdc-icon>
+      </button>
     </div>
   </mdc-list-item>
 </mdc-list>
+<app-chat-delete [groupId]="groupId" (onMessageDeleted)="onMessageChanged()"></app-chat-delete>
+<app-chat-edit [groupId]="groupId" (onMessageEdited)="onMessageChanged()"></app-chat-edit>

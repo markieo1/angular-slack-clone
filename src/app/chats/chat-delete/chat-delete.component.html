@@ -1,0 +1,15 @@
+<mdc-dialog>
+  <mdc-dialog-header>
+    <mdc-dialog-header-title>
+      Delete message
+    </mdc-dialog-header-title>
+  </mdc-dialog-header>
+  <mdc-dialog-body>
+    Are you sure you want to delete this message?
+  </mdc-dialog-body>
+  <mdc-dialog-footer>
+    <button type="button" mdc-dialog-button cancel="true">Cancel</button>
+    <button type="button" mdc-dialog-button (click)="deleteChat()">Delete</button>
+  </mdc-dialog-footer>
+  <mdc-linear-progress *ngIf="deleteInProgress" [indeterminate]="true"></mdc-linear-progress>
+</mdc-dialog>
