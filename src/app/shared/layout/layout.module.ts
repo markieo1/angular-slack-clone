@@ -33,6 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { ScrollDownDirective } from './scroll-down/scroll-down.directive';
 import { ScrollableListDirective } from './scrollable-list/scrollable-list.directive';
+import { Select2Module } from 'ng2-select2';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ScrollableListDirective } from './scrollable-list/scrollable-list.direc
     MdcThemeModule,
     MdcToolbarModule,
     MdcTypographyModule,
+    Select2Module
   ],
   exports: [
     FlexLayoutModule,
@@ -98,7 +100,8 @@ import { ScrollableListDirective } from './scrollable-list/scrollable-list.direc
     MdcToolbarModule,
     MdcTypographyModule,
     ScrollDownDirective,
-    ScrollableListDirective
+    ScrollableListDirective,
+    Select2Module
   ]
 })
 export class LayoutModule { }
