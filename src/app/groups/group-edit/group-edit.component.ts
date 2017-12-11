@@ -206,7 +206,9 @@ export class GroupEditComponent extends BaseComponent implements OnInit, AfterVi
   private initSelect2Options(): void {
     this.options = {
       tags: true,
-      multiple: true
+      multiple: true,
+      tokenSeparators: [',', ' '],
+      placeholder: 'Select tags'
     };
   }
 }

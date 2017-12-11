@@ -4,9 +4,12 @@
       <mdc-list-item-text>
         {{ group.name}}
         <mdc-list-item-secondary>
-          Created: {{ group.createdAt | date:'dd/MM/yyyy HH:mm'}}
+          {{ group.tags?.join(", ")}}
         </mdc-list-item-secondary>
       </mdc-list-item-text>
+      <small mdc-list-item-end class="message-end-detail">
+        {{ group.updatedAt | date:'dd/MM/yyyy HH:mm'}}
+      </small>
     </mdc-list-item>
   </mdc-list>
   <button type="button" (click)="createNewGroup()" mdc-fab class="add-group-fab">

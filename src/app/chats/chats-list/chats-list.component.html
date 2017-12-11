@@ -2,7 +2,7 @@
   <mdc-list-item *ngFor="let chatMessage of messages">
     <div mdc-list-item-start class="message-start-detail">
       <small>{{ chatMessage.sentAt | date:'dd/MM/yyyy' }}
-        <br>{{ chatMessage.sentAt | date:'hh:mm' }}</small>
+        <br>{{ chatMessage.sentAt | date:'HH:mm' }}</small>
     </div>
     <mdc-list-item-text class="message-wrapper">
       <span *ngIf="chatMessage.from.id === currentUserId" class="message-name">Me</span>
