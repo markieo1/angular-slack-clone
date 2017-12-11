@@ -1,3 +1,10 @@
 mdc-dialog-body {
   padding-top: 10px;
 }
+
+.tags-label {
+  letter-spacing: 0.04em;
+  font-size: 0.875rem;
+  transform-origin: left top;
+  transform: scale(0.75, 0.75);
+}

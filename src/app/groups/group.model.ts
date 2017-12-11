@@ -22,7 +22,12 @@ export class Group extends BaseModel {
   /**
    * The reference to the messages send in the group
    */
-  messages: [string];
+  messages: string[];
+
+  /**
+   * The tags for this group
+   */
+  tags: string[];
 
   constructor() {
     super();

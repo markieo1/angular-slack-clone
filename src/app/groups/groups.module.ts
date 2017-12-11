@@ -13,6 +13,7 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { GroupsComponent } from './groups.component';
 import { GroupDeleteComponent } from './group-delete/group-delete.component';
 import { ChatsModule } from '../chats/chats.module';
+import { TagsModule } from '../tags/tags.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ChatsModule } from '../chats/chats.module';
     ReactiveFormsModule,
     AuthModule,
     GroupsRoutingModule,
-    ChatsModule
+    ChatsModule,
+    TagsModule
   ],
   providers: [
     GroupService

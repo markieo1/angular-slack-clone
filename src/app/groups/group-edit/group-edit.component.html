@@ -8,6 +8,10 @@
     <form id="groupForm" [formGroup]="groupForm" (ngSubmit)="onSubmit()" fxFlex fxLayout="column">
       <mdc-text-field fxFlex placeholder="Name" label="Name" required="true" formControlName="name" type="text" [(ngModel)]="group.name"></mdc-text-field>
       <p mdc-text-field-helper-text [validation]="true" [persistent]="false">Name is required</p>
+      <label for="tags" mdc-typography-caption class="tags-label">
+        Tags
+      </label>
+      <select2 [data]="tags" [options]="options" [value]="tagsValue" width="100%" (valueChanged)="tagsChanged($event)"></select2>
     </form>
   </mdc-dialog-body>
   <mdc-dialog-footer>
