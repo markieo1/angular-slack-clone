@@ -14,6 +14,7 @@ import { GroupsComponent } from './groups.component';
 import { GroupDeleteComponent } from './group-delete/group-delete.component';
 import { ChatsModule } from '../chats/chats.module';
 import { TagsModule } from '../tags/tags.module';
+import { GroupRelatedComponent } from './group-related/group-related.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TagsModule } from '../tags/tags.module';
     GroupEditComponent,
     GroupDetailComponent,
     GroupDeleteComponent,
-    GroupsComponent
+    GroupsComponent,
+    GroupRelatedComponent
   ],
   imports: [
     CommonModule,

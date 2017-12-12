@@ -7,6 +7,7 @@ import { ToolbarService } from '../../core/toolbar/toolbar.service';
 import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
 import { GroupDeleteComponent } from '../group-delete/group-delete.component';
 import { ChatsListComponent } from '../../chats/chats-list/chats-list.component';
+import { GroupRelatedComponent } from '../group-related/group-related.component';
 
 @Component({
   selector: 'app-group-detail',
@@ -23,6 +24,9 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
 
   @ViewChild(ChatsListComponent)
   public chatListComponent: ChatsListComponent;
+
+  @ViewChild(GroupRelatedComponent)
+  public groupRelatedComponent: GroupRelatedComponent;
 
   public group: Group;
   private id: string;
@@ -54,7 +58,15 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
       }
     };
 
-    this.toolbarService.setToolbarItems([toolbarButtonEdit, toolbarButtonDiscard]);
+    const toolbarButtonRelated: ToolbarItem = {
+      title: 'View related groups',
+      icon: 'gesture',
+      onClick: () => {
+        this.showRelatedGroups();
+      }
+    };
+
+    this.toolbarService.setToolbarItems([toolbarButtonRelated, toolbarButtonEdit, toolbarButtonDiscard]);
   }
 
   ngOnDestroy() {
@@ -96,5 +108,12 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
    */
   private deleteGroup(): void {
     this.deleteDialog.showDialog();
+  }
+
+  /**
+   * Shows the related groups
+   */
+  private showRelatedGroups(): void {
+    this.groupRelatedComponent.showDialog();
   }
 }
