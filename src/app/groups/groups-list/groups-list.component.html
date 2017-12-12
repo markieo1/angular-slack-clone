@@ -4,7 +4,7 @@
       <mdc-list-item-text>
         {{ group.name}}
         <mdc-list-item-secondary>
-          {{ group.tags?.join(", ")}}
+          {{ group.tags?.sort().join(", ")}}
         </mdc-list-item-secondary>
       </mdc-list-item-text>
       <small mdc-list-item-end class="message-end-detail">
