@@ -1,3 +1,6 @@
+/**
+ * This is required for: https://github.com/trimox/angular-mdc-web/issues/394
+ */
 let fs = require('fs');
 
 function changeFile(file, currLine, newLine) {
