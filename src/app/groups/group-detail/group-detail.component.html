@@ -1,6 +1,7 @@
 <mdc-card fxFill>
   <mdc-card-primary>
     <mdc-card-title>{{ group?.name }}</mdc-card-title>
+    <h2 mdc-card-subtitle>{{ group?.tags?.sort().join(", ")}}</h2>
   </mdc-card-primary>
   <mdc-card-media class="chat-content">
     <mdc-card fxFill>
