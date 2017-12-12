@@ -10,7 +10,7 @@ Angular application with support for
 Requirements
 ============
 
-* Node >= 8.x
+* Node >= 6.9.0
 
 Installation
 ============
