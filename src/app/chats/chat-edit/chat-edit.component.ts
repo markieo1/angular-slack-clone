@@ -35,15 +35,10 @@ export class ChatEditComponent extends BaseComponent implements OnInit {
    */
   public editInProgress: boolean;
 
-  @Output()
-  public onMessageEdited: EventEmitter<void>;
-
   constructor(private chatService: ChatService) {
     super();
 
     this.chatMessage = new ChatMessage();
-
-    this.onMessageEdited = new EventEmitter();
   }
 
   public ngOnInit() {
@@ -75,8 +70,6 @@ export class ChatEditComponent extends BaseComponent implements OnInit {
     this.subscription = this.chatService.update(this.groupId, this.chatMessage.id, this.chatMessage).subscribe((edited) => {
       this.editInProgress = false;
       this.editDialog.close();
-
-      this.onMessageEdited.emit();
     }, (error) => {
       console.error(error);
       this.editInProgress = false;

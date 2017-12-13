@@ -74,3 +74,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/publishReplay';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/pairwise';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/startWith';

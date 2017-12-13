@@ -1,4 +1,5 @@
-<mdc-list twoLine="true" disableRipple="true" class="chat-list" [appScrollDown]="messages">
+<mdc-list *ngIf="messages && messages.length > 0" [twoLine]="true" [disableRipple]="true" class="chat-list" appScrollDown
+  [elements]="messages" [scrollOnChange]="false" [scrollOnLoad]="hasRemaining">
   <mdc-list-item *ngFor="let chatMessage of messages">
     <div mdc-list-item-start class="message-start-detail">
       <small>{{ chatMessage.sentAt | date:'dd/MM/yyyy' }}
@@ -21,5 +22,5 @@
     </div>
   </mdc-list-item>
 </mdc-list>
-<app-chat-delete [groupId]="groupId" (onMessageDeleted)="onMessageChanged()"></app-chat-delete>
-<app-chat-edit [groupId]="groupId" (onMessageEdited)="onMessageChanged()"></app-chat-edit>
+<app-chat-delete [groupId]="groupId"></app-chat-delete>
+<app-chat-edit [groupId]="groupId"></app-chat-edit>
