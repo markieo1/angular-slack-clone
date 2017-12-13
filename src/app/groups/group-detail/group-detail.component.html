@@ -9,8 +9,8 @@
         <mdc-card-title [large]="false">Messages</mdc-card-title>
       </mdc-card-primary>
       <mdc-card-media class="chat-content">
-        <app-chats-list [groupId]="group?.id" appScrollableList></app-chats-list>
-        <app-chat-send [groupId]="group?.id" (onMessageSent)="refreshList()"></app-chat-send>
+        <app-chats-list [groupId]="group?.id" appScrollableList appInfiniteScrollUp [loadNewObservable]="getRefreshObservable()" [scrollPercentage]="40"></app-chats-list>
+        <app-chat-send [groupId]="group?.id"></app-chat-send>
       </mdc-card-media>
     </mdc-card>
   </mdc-card-media>

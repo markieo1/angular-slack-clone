@@ -26,12 +26,8 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
    */
   public sendMessageForm: FormGroup;
 
-  @Output()
-  public onMessageSent: EventEmitter<void>;
-
   constructor(private chatService: ChatService) {
     super();
-    this.onMessageSent = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -51,7 +47,6 @@ export class ChatSendComponent extends BaseComponent implements OnInit {
 
     this.chatService.create(this.groupId, chatMessage).subscribe(() => {
       this.message = '';
-      this.onMessageSent.emit();
     });
   }
 

@@ -34,12 +34,14 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { ScrollDownDirective } from './scroll-down/scroll-down.directive';
 import { ScrollableListDirective } from './scrollable-list/scrollable-list.directive';
 import { Select2Module } from 'ng2-select2';
+import { InfiniteScrollUpDirective } from './infinite-scroll-up/infinite-scoll-up.directive';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ScrollDownDirective,
-    ScrollableListDirective
+    ScrollableListDirective,
+    InfiniteScrollUpDirective
   ],
   imports: [
     CommonModule,
@@ -101,7 +103,8 @@ import { Select2Module } from 'ng2-select2';
     MdcTypographyModule,
     ScrollDownDirective,
     ScrollableListDirective,
-    Select2Module
+    Select2Module,
+    InfiniteScrollUpDirective
   ]
 })
 export class LayoutModule { }

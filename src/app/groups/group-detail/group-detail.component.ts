@@ -8,6 +8,7 @@ import { ToolbarItem } from '../../core/toolbar/toolbar-item.class';
 import { GroupDeleteComponent } from '../group-delete/group-delete.component';
 import { ChatsListComponent } from '../../chats/chats-list/chats-list.component';
 import { GroupRelatedComponent } from '../group-related/group-related.component';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-group-detail',
@@ -76,10 +77,10 @@ export class GroupDetailComponent extends BaseComponent implements OnInit, OnDes
   }
 
   /**
-   * Refreshes the messages
+   * Gets the observable which is used to check if the items have been refreshed
    */
-  public refreshList() {
-    this.chatListComponent.refreshMessages();
+  public getRefreshObservable() {
+    return this.chatListComponent.getRefreshObservable();
   }
 
   /**

@@ -28,13 +28,8 @@ export class ChatDeleteComponent extends BaseComponent {
    */
   public deleteInProgress: boolean;
 
-  @Output()
-  public onMessageDeleted: EventEmitter<void>;
-
   constructor(private chatService: ChatService) {
     super();
-
-    this.onMessageDeleted = new EventEmitter();
   }
 
   /**
@@ -54,8 +49,6 @@ export class ChatDeleteComponent extends BaseComponent {
     this.chatService.delete(this.groupId, this.chatId).subscribe((deleted) => {
       this.deleteInProgress = false;
       this.deleteDialog.close();
-
-      this.onMessageDeleted.emit();
     }, (error) => {
       console.error(error);
       this.deleteInProgress = false;
