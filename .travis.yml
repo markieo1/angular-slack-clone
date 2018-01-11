@@ -1,0 +1,18 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - 8
+
+services:
+  - docker
+
+cache:
+  directories:
+    - "node_modules"
+
+script: # the build step
+  - docker build -t markieo/slack-clone-spa:latest .
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push markieo/slack-clone-spa 
